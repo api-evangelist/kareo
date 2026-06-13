@@ -1,0 +1,19 @@
+{
+  "summary": "Create a new appointment in Kareo",
+  "description": "Example SOAP API request body for the CreateAppointment operation.",
+  "RequestHeader": {
+    "CustomerKey": "ABC123XYZ",
+    "User": "admin@mypractice.com",
+    "Password": "S3cur3P@ssw0rd"
+  },
+  "Appointment": {
+    "PatientId": 100234,
+    "ProviderId": 201,
+    "ServiceLocationId": 10,
+    "StartTime": "2026-06-15T09:00:00",
+    "EndTime": "2026-06-15T09:30:00",
+    "AppointmentStatus": "Scheduled",
+    "AppointmentReasonId": 5,
+    "Notes": "Annual physical examination"
+  }
+}

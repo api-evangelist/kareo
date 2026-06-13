@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/kareo/json-schema/kareo-appointment-schema.json",
+  "title": "KareoAppointment",
+  "description": "An appointment record in the Kareo practice management system.",
+  "type": "object",
+  "properties": {
+    "AppointmentId": {
+      "type": "integer",
+      "description": "Internal Kareo appointment identifier.",
+      "example": 5001234
+    },
+    "PatientId": {
+      "type": "integer",
+      "description": "Internal Kareo patient identifier.",
+      "example": 100234
+    },
+    "ProviderId": {
+      "type": "integer",
+      "description": "Internal Kareo provider identifier.",
+      "example": 201
+    },
+    "ServiceLocationId": {
+      "type": "integer",
+      "description": "Internal Kareo service location identifier.",
+      "example": 10
+    },
+    "StartTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Appointment start date and time.",
+      "example": "2026-06-15T09:00:00"
+    },
+    "EndTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Appointment end date and time.",
+      "example": "2026-06-15T09:30:00"
+    },
+    "AppointmentStatus": {
+      "type": "string",
+      "enum": [
+        "Scheduled",
+        "Confirmed",
+        "CheckedIn",
+        "CheckedOut",
+        "Cancelled",
+        "NoShow"
+      ],
+      "description": "Current status of the appointment.",
+      "example": "Scheduled"
+    },
+    "AppointmentReasonId": {
+      "type": "integer",
+      "description": "Identifier for the appointment reason/type.",
+      "example": 5
+    },
+    "Notes": {
+      "type": "string",
+      "description": "Free-text notes associated with the appointment.",
+      "example": "Patient prefers morning appointments."
+    }
+  },
+  "required": [
+    "PatientId",
+    "ProviderId",
+    "StartTime"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "summary": "Retrieve patients modified since a given date",
+  "description": "Example SOAP API request for the GetPatients operation using a date range filter. Recommended polling interval for integrations is 5-15 minutes.",
+  "RequestHeader": {
+    "CustomerKey": "ABC123XYZ",
+    "User": "admin@mypractice.com",
+    "Password": "S3cur3P@ssw0rd"
+  },
+  "LastModifiedStartDate": "2026-06-13T00:00:00",
+  "LastModifiedEndDate": "2026-06-13T23:59:59"
+}

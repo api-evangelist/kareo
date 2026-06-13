@@ -1,0 +1,27 @@
+{
+  "summary": "Create a new patient in Kareo",
+  "description": "Example SOAP API request body for the CreatePatient operation. In production, this would be serialized as an XML SOAP envelope.",
+  "RequestHeader": {
+    "CustomerKey": "ABC123XYZ",
+    "User": "admin@mypractice.com",
+    "Password": "S3cur3P@ssw0rd"
+  },
+  "Patient": {
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "DateOfBirth": "1985-03-15",
+    "Gender": "Female",
+    "Email": "jane.doe@example.com",
+    "HomePhone": "555-123-4567",
+    "MobilePhone": "555-987-6543",
+    "Address": {
+      "Address1": "123 Main St",
+      "Address2": "Apt 4B",
+      "City": "Los Angeles",
+      "State": "CA",
+      "ZipCode": "90001",
+      "Country": "US"
+    },
+    "PatientExternalId": "EXT-PT-9876"
+  }
+}

@@ -1,0 +1,162 @@
+vocabulary:
+  - term: CustomerKey
+    definition: >-
+      A unique alphanumeric key issued by a Kareo System Administrator that
+      identifies a specific practice integration. Required in all API request
+      headers alongside Username and Password for authentication.
+    domain: Authentication
+  - term: PatientId
+    definition: >-
+      The internal Kareo numeric identifier assigned to a patient record. Used
+      to uniquely reference a patient across all Kareo API operations.
+    domain: Patient Management
+  - term: PatientExternalId
+    definition: >-
+      A string identifier provided by an external system to uniquely reference
+      a patient record. Enables bidirectional synchronization between Kareo and
+      third-party applications.
+    domain: Patient Management
+  - term: AppointmentId
+    definition: >-
+      The internal Kareo numeric identifier for a scheduled appointment. Used
+      to retrieve, update, or cancel a specific appointment.
+    domain: Appointment Scheduling
+  - term: AppointmentStatus
+    definition: >-
+      The current workflow state of an appointment. Valid values include:
+      Scheduled, Confirmed, CheckedIn, CheckedOut, Cancelled, NoShow.
+    domain: Appointment Scheduling
+  - term: AppointmentReason
+    definition: >-
+      A configurable code representing the reason for a patient's visit
+      (e.g., Annual Physical, Follow-up, Urgent Care). Associated with
+      a default duration in minutes.
+    domain: Appointment Scheduling
+  - term: EncounterId
+    definition: >-
+      The internal Kareo numeric identifier for a clinical encounter. An
+      encounter links a patient visit to diagnoses, procedures, and billing.
+    domain: Clinical Encounters
+  - term: EncounterStatus
+    definition: >-
+      The workflow status of a clinical encounter. Valid values include:
+      Draft, Submitted, Approved, Voided.
+    domain: Clinical Encounters
+  - term: DateOfService
+    definition: >-
+      The calendar date on which a clinical service was rendered. Used on
+      encounters and charges in YYYY-MM-DD format.
+    domain: Clinical Encounters
+  - term: DiagnosisCode
+    definition: >-
+      An ICD-10 code identifying a medical condition or diagnosis associated
+      with a clinical encounter (e.g., J06.9 for acute upper respiratory
+      infection).
+    domain: Clinical Coding
+  - term: ProcedureCode
+    definition: >-
+      A CPT (Current Procedural Terminology) code identifying a medical service
+      or procedure performed during an encounter and billed to insurance
+      (e.g., 99213 for an office visit).
+    domain: Clinical Coding
+  - term: ChargeId
+    definition: >-
+      The internal Kareo numeric identifier for a specific billed charge
+      item associated with an encounter.
+    domain: Medical Billing
+  - term: PaymentId
+    definition: >-
+      The internal Kareo numeric identifier for a posted payment, whether
+      patient-paid or insurance-paid.
+    domain: Medical Billing
+  - term: PaymentType
+    definition: >-
+      Classification of a payment. Valid values include: PatientPayment,
+      InsurancePayment, Adjustment.
+    domain: Medical Billing
+  - term: InsuranceBalance
+    definition: >-
+      The portion of a charge amount still owed by the patient's insurance
+      carrier.
+    domain: Medical Billing
+  - term: PatientBalance
+    definition: >-
+      The portion of a charge amount owed directly by the patient, after
+      insurance adjudication.
+    domain: Medical Billing
+  - term: ProviderId
+    definition: >-
+      The internal Kareo numeric identifier for a healthcare provider (physician,
+      nurse practitioner, etc.) configured in the practice.
+    domain: Provider Management
+  - term: NPI
+    definition: >-
+      National Provider Identifier. A unique 10-digit identification number
+      for covered healthcare providers in the United States, required on
+      claims.
+    domain: Provider Management
+  - term: ServiceLocationId
+    definition: >-
+      The internal Kareo identifier for a physical office or facility where
+      clinical services are rendered.
+    domain: Practice Administration
+  - term: PracticeId
+    definition: >-
+      The internal Kareo identifier for a medical practice account.
+    domain: Practice Administration
+  - term: InsurancePolicyId
+    definition: >-
+      The internal Kareo identifier for a patient's insurance policy record,
+      containing payer, group, and member information.
+    domain: Insurance
+  - term: InsurancePolicyExternalId
+    definition: >-
+      An external system identifier for a patient's insurance policy,
+      enabling cross-system policy synchronization.
+    domain: Insurance
+  - term: ExternalVendor
+    definition: >-
+      A third-party software vendor or integration partner registered with
+      Kareo to access the API. Registration provides a CustomerKey.
+    domain: Integration
+  - term: ThrottleLimit
+    definition: >-
+      The maximum number of API requests allowed per hour for a specific
+      operation, enforced to ensure platform stability.
+    domain: Integration
+  - term: MACRA
+    definition: >-
+      Medicare Access and CHIP Reauthorization Act. Federal legislation
+      governing Medicare physician payment through quality reporting programs
+      including MIPS and APMs. Relevant to the Kareo Clinical Open API.
+    domain: Regulatory Compliance
+  - term: MIPS
+    definition: >-
+      Merit-based Incentive Payment System. A CMS program under MACRA that
+      adjusts Medicare payments based on provider performance in quality,
+      cost, improvement activities, and promoting interoperability.
+    domain: Regulatory Compliance
+  - term: HIPAA
+    definition: >-
+      Health Insurance Portability and Accountability Act. US federal law
+      governing the privacy and security of protected health information
+      (PHI). All Kareo API integrations must comply with HIPAA requirements.
+    domain: Regulatory Compliance
+  - term: WSDL
+    definition: >-
+      Web Services Description Language. An XML-based format that describes
+      the interface of the Kareo SOAP web service, including available
+      operations, message formats, and binding details. Available at
+      https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+    domain: Technical
+  - term: SOAP
+    definition: >-
+      Simple Object Access Protocol. The messaging protocol used by the Kareo
+      Integration API. Requests and responses are XML-encoded and transmitted
+      over HTTPS.
+    domain: Technical
+  - term: EHR
+    definition: >-
+      Electronic Health Record. A digital version of a patient's clinical
+      chart. The Kareo Clinical Open API provides REST-based access to EHR data.
+    domain: Clinical

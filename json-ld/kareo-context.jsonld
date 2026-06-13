@@ -1,0 +1,214 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fhir": "https://hl7.org/fhir/",
+    "kareo": "https://www.kareo.com/api/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Patient": "schema:Patient",
+    "PatientId": {
+      "@id": "kareo:patientId",
+      "@type": "xsd:integer"
+    },
+    "PatientExternalId": {
+      "@id": "kareo:patientExternalId",
+      "@type": "xsd:string"
+    },
+    "PatientFullName": "schema:name",
+    "FirstName": "schema:givenName",
+    "LastName": "schema:familyName",
+    "DateOfBirth": {
+      "@id": "schema:birthDate",
+      "@type": "xsd:date"
+    },
+    "Gender": "schema:gender",
+    "Email": "schema:email",
+    "HomePhone": "schema:telephone",
+    "MobilePhone": "schema:telephone",
+    "InsurancePolicyId": {
+      "@id": "kareo:insurancePolicyId",
+      "@type": "xsd:integer"
+    },
+    "InsurancePolicyExternalId": {
+      "@id": "kareo:insurancePolicyExternalId",
+      "@type": "xsd:string"
+    },
+    "LastModifiedDate": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "Address": "schema:PostalAddress",
+    "Address1": "schema:streetAddress",
+    "Address2": "schema:streetAddress",
+    "City": "schema:addressLocality",
+    "State": "schema:addressRegion",
+    "ZipCode": "schema:postalCode",
+    "Country": "schema:addressCountry",
+
+    "Appointment": "schema:MedicalAppointment",
+    "AppointmentId": {
+      "@id": "kareo:appointmentId",
+      "@type": "xsd:integer"
+    },
+    "StartTime": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "EndTime": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "AppointmentStatus": {
+      "@id": "kareo:appointmentStatus",
+      "@type": "xsd:string"
+    },
+    "AppointmentReasonId": {
+      "@id": "kareo:appointmentReasonId",
+      "@type": "xsd:integer"
+    },
+    "Notes": "schema:description",
+
+    "Encounter": {
+      "@id": "fhir:Encounter",
+      "@type": "@id"
+    },
+    "EncounterId": {
+      "@id": "kareo:encounterId",
+      "@type": "xsd:integer"
+    },
+    "EncounterStatus": {
+      "@id": "kareo:encounterStatus",
+      "@type": "xsd:string"
+    },
+    "DateOfService": {
+      "@id": "kareo:dateOfService",
+      "@type": "xsd:date"
+    },
+    "DiagnosisCodes": {
+      "@id": "fhir:Condition.code",
+      "@container": "@list"
+    },
+    "ProcedureCodes": {
+      "@id": "fhir:Procedure.code",
+      "@container": "@list"
+    },
+
+    "Charge": {
+      "@id": "kareo:Charge",
+      "@type": "@id"
+    },
+    "ChargeId": {
+      "@id": "kareo:chargeId",
+      "@type": "xsd:integer"
+    },
+    "ProcedureCode": {
+      "@id": "kareo:procedureCode",
+      "@type": "xsd:string"
+    },
+    "ChargeAmount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "InsuranceBalance": {
+      "@id": "kareo:insuranceBalance",
+      "@type": "xsd:decimal"
+    },
+    "PatientBalance": {
+      "@id": "kareo:patientBalance",
+      "@type": "xsd:decimal"
+    },
+
+    "Payment": {
+      "@id": "schema:PayAction",
+      "@type": "@id"
+    },
+    "PaymentId": {
+      "@id": "kareo:paymentId",
+      "@type": "xsd:integer"
+    },
+    "PaymentDate": {
+      "@id": "schema:paymentDueDate",
+      "@type": "xsd:date"
+    },
+    "PaymentAmount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "PaymentType": {
+      "@id": "kareo:paymentType",
+      "@type": "xsd:string"
+    },
+
+    "Provider": {
+      "@id": "schema:Physician",
+      "@type": "@id"
+    },
+    "ProviderId": {
+      "@id": "kareo:providerId",
+      "@type": "xsd:integer"
+    },
+    "NPI": {
+      "@id": "kareo:npi",
+      "@type": "xsd:string"
+    },
+    "Specialty": "schema:medicalSpecialty",
+    "IsActive": {
+      "@id": "schema:active",
+      "@type": "xsd:boolean"
+    },
+
+    "ServiceLocation": {
+      "@id": "schema:MedicalClinic",
+      "@type": "@id"
+    },
+    "ServiceLocationId": {
+      "@id": "kareo:serviceLocationId",
+      "@type": "xsd:integer"
+    },
+    "LocationName": "schema:name",
+
+    "Practice": {
+      "@id": "schema:MedicalOrganization",
+      "@type": "@id"
+    },
+    "PracticeId": {
+      "@id": "kareo:practiceId",
+      "@type": "xsd:integer"
+    },
+    "PracticeName": "schema:legalName",
+    "TaxId": {
+      "@id": "kareo:taxId",
+      "@type": "xsd:string"
+    },
+
+    "CustomerKey": {
+      "@id": "kareo:customerKey",
+      "@type": "xsd:string"
+    },
+
+    "ExternalVendor": {
+      "@id": "kareo:ExternalVendor",
+      "@type": "@id"
+    },
+    "VendorId": {
+      "@id": "kareo:vendorId",
+      "@type": "xsd:integer"
+    },
+    "VendorName": "schema:name",
+
+    "ThrottleLimit": {
+      "@id": "kareo:ThrottleLimit",
+      "@type": "@id"
+    },
+    "RequestsPerHour": {
+      "@id": "kareo:requestsPerHour",
+      "@type": "xsd:integer"
+    },
+    "CurrentUsage": {
+      "@id": "kareo:currentUsage",
+      "@type": "xsd:integer"
+    }
+  }
+}

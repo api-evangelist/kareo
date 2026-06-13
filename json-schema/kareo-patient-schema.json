@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/kareo/json-schema/kareo-patient-schema.json",
+  "title": "KareoPatient",
+  "description": "A patient record in the Kareo practice management system.",
+  "type": "object",
+  "properties": {
+    "PatientId": {
+      "type": "integer",
+      "description": "Internal Kareo patient identifier.",
+      "example": 100234
+    },
+    "PatientExternalId": {
+      "type": "string",
+      "description": "External system identifier for the patient, used for cross-system synchronization.",
+      "example": "EXT-PT-9876"
+    },
+    "PatientFullName": {
+      "type": "string",
+      "description": "Full name of the patient in LastName, FirstName format.",
+      "example": "Doe, Jane"
+    },
+    "FirstName": {
+      "type": "string",
+      "description": "Patient first name.",
+      "example": "Jane"
+    },
+    "LastName": {
+      "type": "string",
+      "description": "Patient last name.",
+      "example": "Doe"
+    },
+    "DateOfBirth": {
+      "type": "string",
+      "format": "date",
+      "description": "Patient date of birth in YYYY-MM-DD format.",
+      "example": "1985-03-15"
+    },
+    "Gender": {
+      "type": "string",
+      "enum": ["Male", "Female", "Unknown"],
+      "description": "Patient gender."
+    },
+    "Email": {
+      "type": "string",
+      "format": "email",
+      "description": "Patient email address.",
+      "example": "jane.doe@example.com"
+    },
+    "HomePhone": {
+      "type": "string",
+      "description": "Patient home phone number.",
+      "example": "555-123-4567"
+    },
+    "MobilePhone": {
+      "type": "string",
+      "description": "Patient mobile phone number.",
+      "example": "555-987-6543"
+    },
+    "Address": {
+      "$ref": "#/$defs/Address"
+    },
+    "InsurancePolicyId": {
+      "type": "integer",
+      "description": "Internal identifier for the patient's primary insurance policy."
+    },
+    "InsurancePolicyExternalId": {
+      "type": "string",
+      "description": "External identifier for the patient's primary insurance policy."
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last modification to the patient record."
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A US postal address.",
+      "properties": {
+        "Address1": {
+          "type": "string",
+          "example": "123 Main St"
+        },
+        "Address2": {
+          "type": "string",
+          "example": "Suite 100"
+        },
+        "City": {
+          "type": "string",
+          "example": "Los Angeles"
+        },
+        "State": {
+          "type": "string",
+          "example": "CA"
+        },
+        "ZipCode": {
+          "type": "string",
+          "example": "90001"
+        },
+        "Country": {
+          "type": "string",
+          "example": "US"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/kareo/json-schema/kareo-encounter-schema.json",
+  "title": "KareoEncounter",
+  "description": "A clinical encounter record in the Kareo practice management and EHR system.",
+  "type": "object",
+  "properties": {
+    "EncounterId": {
+      "type": "integer",
+      "description": "Internal Kareo encounter identifier.",
+      "example": 8009001
+    },
+    "PatientId": {
+      "type": "integer",
+      "description": "Internal Kareo patient identifier.",
+      "example": 100234
+    },
+    "ProviderId": {
+      "type": "integer",
+      "description": "Rendering provider identifier.",
+      "example": 201
+    },
+    "AppointmentId": {
+      "type": "integer",
+      "description": "Associated appointment identifier, if applicable.",
+      "example": 5001234
+    },
+    "EncounterStatus": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Submitted",
+        "Approved",
+        "Voided"
+      ],
+      "description": "Workflow status of the encounter.",
+      "example": "Submitted"
+    },
+    "DateOfService": {
+      "type": "string",
+      "format": "date",
+      "description": "Date on which the clinical service was rendered.",
+      "example": "2026-06-15"
+    },
+    "DiagnosisCodes": {
+      "type": "array",
+      "description": "ICD-10 diagnosis codes associated with the encounter.",
+      "items": {
+        "type": "string"
+      },
+      "example": ["J06.9", "Z00.00"]
+    },
+    "ProcedureCodes": {
+      "type": "array",
+      "description": "CPT procedure codes billed in the encounter.",
+      "items": {
+        "type": "string"
+      },
+      "example": ["99213"]
+    }
+  },
+  "required": [
+    "PatientId",
+    "ProviderId",
+    "DateOfService"
+  ]
+}

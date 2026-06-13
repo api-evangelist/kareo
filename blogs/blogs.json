@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "source": "https://www.tebra.com/theintake",
+    "description": "Blog posts from Tebra's The Intake blog, the content resource for Kareo/Tebra customers covering healthcare practice management, billing, and clinical topics.",
+    "pulled": "2026-06-13"
+  },
+  "posts": [
+    {
+      "title": "How integrated behavioral health improves patient outcomes in primary care",
+      "url": "https://www.tebra.com/theintake/patient-experience/how-integrated-behavioral-health-improves-patient-outcomes",
+      "author": "Lisa Eramo",
+      "category": "Patient Experience",
+      "description": "Explores implementation strategies for integrated behavioral health models to enhance mental health outcomes and strengthen care coordination in primary care settings.",
+      "tags": ["behavioral health", "patient outcomes", "primary care", "care coordination"]
+    },
+    {
+      "title": "Is self-diagnosis on social media helping or hurting people's health?",
+      "url": "https://www.tebra.com/theintake/medical-deep-dives/tips-and-trends/is-self-diagnosis-on-social-media-helping-or-hurting-peoples-health",
+      "category": "Medical Deep Dives",
+      "description": "Examines the impact of social media-based self-diagnosis on patient health outcomes and the role of providers in guiding patients to accurate information.",
+      "tags": ["social media", "self-diagnosis", "patient education", "health literacy"]
+    },
+    {
+      "title": "Physician burnout by specialty 2025: Navigating stress in the healthcare industry",
+      "url": "https://www.tebra.com/theintake/staffing-solutions/independent-practices/physician-burnout-by-specialty",
+      "category": "Staffing Solutions",
+      "description": "Analyzes burnout patterns across different medical specialties and strategies for managing workplace stress in independent practices.",
+      "tags": ["physician burnout", "staffing", "independent practices", "mental health", "healthcare workforce"]
+    },
+    {
+      "title": "How to identify and escalate systemic underpayments by payer",
+      "url": "https://www.tebra.com/theintake/getting-paid/identify-escalate-systemic-underpayments-by-payer",
+      "author": "Lisa Eramo",
+      "readTime": "8 minutes",
+      "category": "Medical Billing",
+      "description": "Provides guidance on recognizing and addressing recurring payment discrepancies from insurance carriers, including documentation strategies and escalation workflows.",
+      "tags": ["medical billing", "underpayments", "insurance", "revenue cycle", "practice management"]
+    }
+  ]
+}
