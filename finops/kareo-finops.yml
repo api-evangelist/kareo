@@ -1,0 +1,74 @@
+name: Kareo FinOps
+description: >-
+  Financial operations considerations for teams integrating with the Kareo
+  (Tebra) APIs. API access is bundled with the platform subscription and
+  is not sold as a standalone product. Cost management for API integrations
+  is primarily tied to the underlying platform subscription model, which is
+  priced per clinical provider.
+url: https://www.tebra.com/pricing
+cost_model:
+  type: Subscription-bundled
+  description: >-
+    API access is included as part of the Tebra platform subscription.
+    There are no separate per-call, per-request, or metered API fees.
+    Platform pricing is per clinical provider per month on a quote basis.
+  billing_unit: Per clinical provider per month
+  pricing_visibility: Quote-based (not publicly listed)
+  contact: "(866) 938-3272 or https://www.tebra.com/demo"
+cost_drivers:
+  - name: Provider Count
+    description: >-
+      The primary cost driver is the number of prescribing clinical
+      providers (MD, DO, NP, PA) using the platform. Each provider
+      requires a separate subscription.
+    impact: High
+  - name: Feature Modules
+    description: >-
+      Cost varies by which platform modules are selected: EHR,
+      Billing, Patient Experience, Marketing, or the full
+      Practice Automation bundle.
+    impact: High
+  - name: Claim Volume
+    description: >-
+      Scaled pricing is available for low-volume providers with
+      100 or fewer claims per month.
+    impact: Medium
+  - name: EPCS Setup
+    description: >-
+      Electronic Prescribing of Controlled Substances (EPCS) setup
+      is a one-time fee of approximately $75 per provider.
+    impact: Low
+    fee_type: One-time
+  - name: PDMP Integration
+    description: >-
+      Prescription Drug Monitoring Program integration costs
+      approximately $500 one-time per facility plus $50 per
+      user per year.
+    impact: Low
+    fee_type: One-time plus annual
+optimization:
+  - strategy: Bundle Negotiation
+    description: >-
+      Practices that adopt multiple modules (EHR + Billing +
+      Patient Experience) often qualify for bundled pricing
+      or volume incentives. Negotiate a comprehensive contract
+      upfront to reduce total cost.
+  - strategy: Provider Count Management
+    description: >-
+      Because billing is per prescribing provider, ensure only
+      prescribing clinicians (MD, DO, NP, PA) are counted.
+      Non-clinical staff access is unlimited at no additional cost.
+  - strategy: Low-Volume Scaling
+    description: >-
+      Practices with 100 or fewer claims per month should
+      request scaled pricing from Tebra sales to reduce costs.
+  - strategy: API Polling Efficiency
+    description: >-
+      Since there are no per-call fees but the terms prohibit
+      excessive usage, design integrations to poll at recommended
+      5 to 15 minute intervals and batch data retrieval to
+      minimize API calls and avoid policy violations.
+notes:
+  - No metered or consumption-based API pricing exists
+  - All API costs are embedded in the platform subscription
+  - Volume discounts and multi-year agreements may reduce total cost of ownership

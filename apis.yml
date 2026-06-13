@@ -1,0 +1,99 @@
+aid: kareo
+name: Kareo
+description: >-
+  Kareo, now part of Tebra, provides cloud medical software for independent
+  practices. The platform offers SOAP-based web service APIs for integrating
+  with clinical data, patient management, appointment scheduling, billing,
+  collections, and insurance eligibility verification. The Kareo Integration
+  API enables developers to build programs that access practice management
+  data and functionality through authenticated XML-based SOAP requests.
+  The platform also exposes a Clinical Open API for EHR data access.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/kareo/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+type: Index
+tags:
+  - Healthcare
+  - Medical Software
+  - EHR
+  - Practice Management
+  - Medical Billing
+  - Patient Scheduling
+  - Clinical Data
+  - Insurance Eligibility
+  - HIPAA
+apis:
+  - aid: kareo:kareo-soap-api
+    name: Kareo Integration SOAP API
+    description: >-
+      The Kareo Integration SOAP API provides a web services interface for
+      integrating third-party applications with practice management data.
+      Supports read access to patients, providers, appointments, transactions,
+      and charges, as well as write access to patients and encounters.
+      Authentication requires a username, password, and a Customer Key issued
+      by a System Administrator.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+    baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+    tags:
+      - SOAP
+      - Practice Management
+      - Billing
+      - Patients
+      - Appointments
+      - Encounters
+    properties:
+      - type: Documentation
+        url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+      - type: WSDL
+        url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+      - type: TermsOfService
+        url: https://www.tebra.com/api-terms-of-use/
+  - aid: kareo:kareo-clinical-open-api
+    name: Kareo Clinical Open API
+    description: >-
+      The Kareo Clinical Open API provides REST-based access to EHR clinical
+      data, exposing patient clinical records, MACRA/MIPS reporting data, and
+      related healthcare information. The API is documented with a Swagger UI
+      interface and is accessible via api.kareo.com.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://api.kareo.com/clinical/v1/swagger/
+    baseURL: https://api.kareo.com/clinical/v1
+    tags:
+      - REST
+      - Clinical
+      - EHR
+      - MACRA
+      - MIPS
+      - OpenAPI
+    properties:
+      - type: Documentation
+        url: https://api.kareo.com/clinical/v1/swagger/
+common:
+  - type: Website
+    url: https://www.kareo.com
+  - type: Documentation
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  - type: GitHubOrg
+    url: https://github.com/kareo
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/kareo
+  - type: Blog
+    url: https://www.tebra.com/theintake
+  - type: Pricing
+    url: https://www.tebra.com/pricing
+  - type: StatusPage
+    url: https://status.tebra.com
+  - type: X
+    url: https://x.com/kareo
+  - type: Plans
+    url: plans/kareo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/kareo-rate-limits.yml
+  - type: FinOps
+    url: finops/kareo-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

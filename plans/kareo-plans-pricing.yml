@@ -1,0 +1,68 @@
+name: Kareo Plans and Pricing
+description: >-
+  Kareo (now Tebra) offers quote-based pricing with no publicly listed per-API
+  price points. Platform subscriptions are priced per clinical provider, not per
+  seat or per user. All API access is bundled with the platform subscription
+  and requires a Customer Key issued by a Tebra System Administrator.
+  API access is not sold separately; it is available to existing platform
+  subscribers as an integration capability.
+url: https://www.tebra.com/pricing
+plans:
+  - name: Practice Automation (All-in-One)
+    description: >-
+      Comprehensive practice management platform including EHR, billing,
+      patient experience, and marketing tools. Includes full API access
+      via the Kareo Integration SOAP API and Clinical Open API.
+    pricing: Quote-based, per provider/month
+    features:
+      - Full EHR (Clinical) access
+      - Practice Management and Billing
+      - Patient Engagement tools
+      - Marketing and Practice Growth
+      - Kareo Integration SOAP API access
+      - Kareo Clinical Open API access
+      - Data Cloud (add-on)
+  - name: EHR+
+    description: >-
+      Clinical-focused plan with billing capabilities. Includes EHR and
+      billing features with API access for integration.
+    pricing: Quote-based, per provider/month
+    features:
+      - EHR (Clinical) access
+      - Billing integration
+      - Clinical Open API access
+      - SOAP API integration
+  - name: Patient Experience + Marketing
+    description: >-
+      Patient engagement and practice growth tools only. Limited API scope
+      for patient-facing workflows.
+    pricing: Quote-based, per provider/month
+    features:
+      - Patient engagement tools
+      - Marketing automation
+      - Practice Growth Analytics
+  - name: EHR Starter
+    description: >-
+      Basic certified EHR technology plan for smaller practices.
+    pricing: Quote-based, per provider/month
+    features:
+      - Certified EHR technology
+      - Basic clinical documentation
+  - name: Billing Starter
+    description: >-
+      Billing-focused solution for practices that need practice management
+      and revenue cycle without a full EHR.
+    pricing: Quote-based, per provider/month
+    features:
+      - Practice management
+      - Medical billing
+      - Collections
+      - Insurance eligibility verification
+notes:
+  - Pricing is not publicly listed; contact Tebra sales at (866) 938-3272 or request a demo at https://www.tebra.com/demo
+  - Subscriptions are priced per prescribing clinical provider (MD, DO, NP, PA)
+  - Unlimited non-clinical staff access at no additional cost
+  - Volume discounts available for larger practices
+  - Scaled pricing available for low-volume providers with 100 or fewer claims per month
+  - EPCS setup costs approximately $75 per provider (one-time)
+  - PDMP integration costs $500 one-time per facility plus approximately $50 per user per year

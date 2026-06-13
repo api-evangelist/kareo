@@ -1,0 +1,43 @@
+name: Kareo API Rate Limits
+description: >-
+  Kareo (Tebra) does not publish explicit numeric rate limits in public
+  documentation. The API Terms of Use prohibit excessive or abusive usage
+  and state that developers cannot exceed or circumvent limitations on access,
+  calls, and use of the Tebra API. Polling intervals and best practices
+  for integration are documented in the API Integration User Guide.
+url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+limits:
+  - type: Polling Frequency
+    description: >-
+      Tebra recommends polling at 5 to 15 minute intervals for refreshed
+      data. More frequent polling is discouraged to avoid degrading
+      service performance.
+    recommended_interval: "5-15 minutes"
+    scope: Per integration
+  - type: Abuse Prevention
+    description: >-
+      The Tebra API Terms of Use prohibit excessive or abusive usage
+      that disrupts or degrades the performance of the Tebra API.
+      Developers must not exceed or circumvent limitations on access,
+      calls, and use of the API.
+    scope: All API requests
+    enforcement: Account suspension or API key revocation
+policies:
+  - name: No Webhook Push Support
+    description: >-
+      The Kareo SOAP API does not support HL7 or webhook push
+      functionality. All data retrieval must be initiated by polling
+      from the integration client.
+  - name: Customer Key Required
+    description: >-
+      All API requests require a Customer Key in addition to standard
+      login credentials. The key is issued per integration by a
+      System Administrator and restricts the scope of accessible data.
+  - name: HIPAA Compliance
+    description: >-
+      All API integrations must comply with HIPAA regulations and
+      implement reasonable security measures to protect patient data.
+notes:
+  - No publicly documented numeric rate limits (requests per minute or per day)
+  - Contact Tebra support for integration-specific rate limit guidance
+  - Support requests submitted via the Customer Care Center at helpme.tebra.com
