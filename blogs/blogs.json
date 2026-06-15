@@ -11,21 +11,37 @@
       "author": "Lisa Eramo",
       "category": "Patient Experience",
       "description": "Explores implementation strategies for integrated behavioral health models to enhance mental health outcomes and strengthen care coordination in primary care settings.",
-      "tags": ["behavioral health", "patient outcomes", "primary care", "care coordination"]
+      "tags": [
+        "behavioral health",
+        "patient outcomes",
+        "primary care",
+        "care coordination"
+      ]
     },
     {
       "title": "Is self-diagnosis on social media helping or hurting people's health?",
       "url": "https://www.tebra.com/theintake/medical-deep-dives/tips-and-trends/is-self-diagnosis-on-social-media-helping-or-hurting-peoples-health",
       "category": "Medical Deep Dives",
       "description": "Examines the impact of social media-based self-diagnosis on patient health outcomes and the role of providers in guiding patients to accurate information.",
-      "tags": ["social media", "self-diagnosis", "patient education", "health literacy"]
+      "tags": [
+        "social media",
+        "self-diagnosis",
+        "patient education",
+        "health literacy"
+      ]
     },
     {
       "title": "Physician burnout by specialty 2025: Navigating stress in the healthcare industry",
       "url": "https://www.tebra.com/theintake/staffing-solutions/independent-practices/physician-burnout-by-specialty",
       "category": "Staffing Solutions",
       "description": "Analyzes burnout patterns across different medical specialties and strategies for managing workplace stress in independent practices.",
-      "tags": ["physician burnout", "staffing", "independent practices", "mental health", "healthcare workforce"]
+      "tags": [
+        "physician burnout",
+        "staffing",
+        "independent practices",
+        "mental health",
+        "healthcare workforce"
+      ]
     },
     {
       "title": "How to identify and escalate systemic underpayments by payer",
@@ -34,7 +50,25 @@
       "readTime": "8 minutes",
       "category": "Medical Billing",
       "description": "Provides guidance on recognizing and addressing recurring payment discrepancies from insurance carriers, including documentation strategies and escalation workflows.",
-      "tags": ["medical billing", "underpayments", "insurance", "revenue cycle", "practice management"]
+      "tags": [
+        "medical billing",
+        "underpayments",
+        "insurance",
+        "revenue cycle",
+        "practice management"
+      ]
     }
-  ]
+  ],
+  "repo": "kareo",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/company/kareo",
+      "feed_url": "https://www.linkedin.com/company/kareo",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
