@@ -8,7 +8,7 @@ description: >-
   API enables developers to build programs that access practice management
   data and functionality through authenticated XML-based SOAP requests.
   The platform also exposes a Clinical Open API for EHR data access.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/kareo/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -34,7 +34,7 @@ apis:
       and charges, as well as write access to patients and encounters.
       Authentication requires a username, password, and a Customer Key issued
       by a System Administrator.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
     baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
     tags:
@@ -58,7 +58,7 @@ apis:
       data, exposing patient clinical records, MACRA/MIPS reporting data, and
       related healthcare information. The API is documented with a Swagger UI
       interface and is accessible via api.kareo.com.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.kareo.com/clinical/v1/swagger/
     baseURL: https://api.kareo.com/clinical/v1
     tags:
