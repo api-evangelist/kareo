@@ -72,6 +72,10 @@ apis:
       - type: Documentation
         url: https://api.kareo.com/clinical/v1/swagger/
 common:
+  - type: TrustCenter
+    url: security/kareo-trust-center.yml
+  - type: DomainSecurity
+    url: security/kareo-domain-security.yml
   - type: Website
     url: https://www.kareo.com
   - type: Documentation
