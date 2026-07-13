@@ -2,13 +2,11 @@
   "repo": "kareo",
   "feeds": [
     {
-      "source": "https://www.tebra.com/theintake",
-      "feed_url": "",
-      "saved": 0,
-      "method": "agent-scrape"
+      "source": "https://www.linkedin.com/company/kareo",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T12:48:58Z",
-  "post_count": 2,
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 3,
+  "agent_pulled": "2026-07-04"
 }
