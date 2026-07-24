@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Administrative
+  description: Vendor registration, throttles, and configuration
+paths:
+  /KareoServices.svc/RegisterExternalVendor:
+    post:
+      operationId: registerExternalVendor
+      summary: Register an external vendor integration
+      description: Registers a third-party vendor or integration application with the Kareo platform to receive a CustomerKey for API access.
+      tags:
+      - Administrative
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RegisterExternalVendorRequest'
+      responses:
+        '200':
+          description: External vendor registered
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RegisterExternalVendorResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetExternalVendors:
+    post:
+      operationId: getExternalVendors
+      summary: Retrieve registered external vendors
+      description: Retrieves the list of external vendor integrations registered with the practice.
+      tags:
+      - Administrative
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetExternalVendorsRequest'
+      responses:
+        '200':
+          description: External vendors retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetExternalVendorsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetThrottles:
+    post:
+      operationId: getThrottles
+      summary: Retrieve API throttle limits
+      description: Returns the current API request throttle limits and usage for the authenticated practice to support rate-limit-aware integrations.
+      tags:
+      - Administrative
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetThrottlesRequest'
+      responses:
+        '200':
+          description: Throttle limits retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetThrottlesResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetCustomerIdFromKey:
+    post:
+      operationId: getCustomerIdFromKey
+      summary: Resolve customer identifier from CustomerKey
+      description: Resolves the internal customer/practice identifier corresponding to a given CustomerKey credential.
+      tags:
+      - Administrative
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetCustomerIdFromKeyRequest'
+      responses:
+        '200':
+          description: Customer ID retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetCustomerIdFromKeyResponse'
+        '401':
+          description: Authentication failed
+components:
+  schemas:
+    GetThrottlesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    RegisterExternalVendorResponse:
+      type: object
+      properties:
+        VendorId:
+          type: integer
+        CustomerKey:
+          type: string
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetCustomerIdFromKeyResponse:
+      type: object
+      properties:
+        CustomerId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetExternalVendorsResponse:
+      type: object
+      properties:
+        ExternalVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalVendor'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    ThrottleLimit:
+      type: object
+      properties:
+        OperationName:
+          type: string
+          description: Name of the API operation subject to throttling.
+        RequestsPerHour:
+          type: integer
+          description: Maximum allowed requests per hour for this operation.
+        CurrentUsage:
+          type: integer
+          description: Current request count in the rolling window.
+    GetExternalVendorsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    RegisterExternalVendorRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        VendorName:
+          type: string
+        VendorEmail:
+          type: string
+          format: email
+    GetThrottlesResponse:
+      type: object
+      properties:
+        ThrottleLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThrottleLimit'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetCustomerIdFromKeyRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        CustomerKey:
+          type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    ExternalVendor:
+      type: object
+      properties:
+        VendorId:
+          type: integer
+        VendorName:
+          type: string
+        CustomerKey:
+          type: string
+        IsActive:
+          type: boolean
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

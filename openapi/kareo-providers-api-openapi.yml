@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative Providers API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Providers
+  description: Provider and practice administration
+paths:
+  /KareoServices.svc/GetProviders:
+    post:
+      operationId: getProviders
+      summary: Retrieve provider records
+      description: Retrieves the list of healthcare providers configured in the practice.
+      tags:
+      - Providers
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetProvidersRequest'
+      responses:
+        '200':
+          description: Providers retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetProvidersResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetPractices:
+    post:
+      operationId: getPractices
+      summary: Retrieve practice records
+      description: Retrieves practice information for the authenticated account, including name, address, and NPI.
+      tags:
+      - Providers
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetPracticesRequest'
+      responses:
+        '200':
+          description: Practices retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetPracticesResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetServiceLocations:
+    post:
+      operationId: getServiceLocations
+      summary: Retrieve service locations
+      description: Retrieves the list of service locations (offices, facilities) configured for the practice.
+      tags:
+      - Providers
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetServiceLocationsRequest'
+      responses:
+        '200':
+          description: Service locations retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetServiceLocationsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetProcedureCodes:
+    post:
+      operationId: getProcedureCodes
+      summary: Retrieve procedure codes
+      description: Retrieves the CPT/procedure code list configured for the practice for use in encounter and charge creation.
+      tags:
+      - Providers
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetProcedureCodesRequest'
+      responses:
+        '200':
+          description: Procedure codes retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetProcedureCodesResponse'
+        '401':
+          description: Authentication failed
+components:
+  schemas:
+    GetProcedureCodesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetPracticesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    Provider:
+      type: object
+      properties:
+        ProviderId:
+          type: integer
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        NPI:
+          type: string
+          description: National Provider Identifier (10-digit).
+          example: '1234567890'
+        Specialty:
+          type: string
+        IsActive:
+          type: boolean
+    ServiceLocation:
+      type: object
+      properties:
+        ServiceLocationId:
+          type: integer
+        LocationName:
+          type: string
+          example: Main Office
+        Address:
+          $ref: '#/components/schemas/Address'
+        Phone:
+          type: string
+        NPI:
+          type: string
+    ProcedureCode:
+      type: object
+      properties:
+        ProcedureCodeId:
+          type: integer
+        Code:
+          type: string
+          example: '99213'
+        Description:
+          type: string
+          example: Office visit, established patient, moderate complexity
+        DefaultFee:
+          type: number
+          format: float
+          example: 150.0
+    GetProvidersRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetServiceLocationsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    Practice:
+      type: object
+      properties:
+        PracticeId:
+          type: integer
+        PracticeName:
+          type: string
+        NPI:
+          type: string
+        Address:
+          $ref: '#/components/schemas/Address'
+        Phone:
+          type: string
+        TaxId:
+          type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    GetPracticesResponse:
+      type: object
+      properties:
+        Practices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Practice'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetServiceLocationsResponse:
+      type: object
+      properties:
+        ServiceLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLocation'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetProcedureCodesResponse:
+      type: object
+      properties:
+        ProcedureCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcedureCode'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetProvidersResponse:
+      type: object
+      properties:
+        Providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    Address:
+      type: object
+      properties:
+        Address1:
+          type: string
+          example: 123 Main St
+        Address2:
+          type: string
+          example: Suite 100
+        City:
+          type: string
+          example: Los Angeles
+        State:
+          type: string
+          example: CA
+        ZipCode:
+          type: string
+          example: '90001'
+        Country:
+          type: string
+          example: US
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

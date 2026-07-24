@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative Patients API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Patients
+  description: Patient demographic and record management
+paths:
+  /KareoServices.svc/CreatePatient:
+    post:
+      operationId: createPatient
+      summary: Create a new patient record
+      description: Creates a new patient record in Kareo practice management. Returns the newly created patient identifier. Requires CustomerKey authentication.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreatePatientRequest'
+      responses:
+        '200':
+          description: Patient created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreatePatientResponse'
+        '401':
+          description: Authentication failed - invalid CustomerKey, username, or password
+        '400':
+          description: Bad request - invalid patient data
+  /KareoServices.svc/UpdatePatient:
+    post:
+      operationId: updatePatient
+      summary: Update an existing patient record
+      description: Updates demographic and contact information for an existing patient record identified by PatientId or PatientExternalId.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdatePatientRequest'
+      responses:
+        '200':
+          description: Patient updated successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdatePatientResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Patient not found
+  /KareoServices.svc/GetPatient:
+    post:
+      operationId: getPatient
+      summary: Retrieve a single patient record
+      description: Retrieves a single patient record by PatientId or PatientExternalId.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetPatientRequest'
+      responses:
+        '200':
+          description: Patient record retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetPatientResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Patient not found
+  /KareoServices.svc/GetPatients:
+    post:
+      operationId: getPatients
+      summary: Retrieve multiple patient records with filters
+      description: Retrieves a filtered list of patient records. Supports filtering by LastModifiedDate range and other criteria.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetPatientsRequest'
+      responses:
+        '200':
+          description: Patient list retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetPatientsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetAllPatients:
+    post:
+      operationId: getAllPatients
+      summary: Retrieve all patient records for a practice
+      description: Retrieves all patient records for the authenticated practice. Use with caution on large datasets; consider GetPatients with date filters.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetAllPatientsRequest'
+      responses:
+        '200':
+          description: All patients retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetPatientsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/UpdatePatientsExternalID:
+    post:
+      operationId: updatePatientsExternalID
+      summary: Update external identifier for patients
+      description: Bulk updates the external identifier field for one or more patient records, enabling synchronization with external systems.
+      tags:
+      - Patients
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdatePatientsExternalIDRequest'
+      responses:
+        '200':
+          description: External IDs updated successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdatePatientsExternalIDResponse'
+        '401':
+          description: Authentication failed
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        PatientId:
+          type: integer
+          description: Internal Kareo patient identifier.
+          example: 100234
+        PatientExternalId:
+          type: string
+          description: External system identifier for the patient.
+          example: EXT-PT-9876
+        PatientFullName:
+          type: string
+          description: Full name of the patient (LastName, FirstName).
+          example: Doe, Jane
+        FirstName:
+          type: string
+          example: Jane
+        LastName:
+          type: string
+          example: Doe
+        DateOfBirth:
+          type: string
+          format: date
+          description: Patient date of birth in YYYY-MM-DD format.
+          example: '1985-03-15'
+        Gender:
+          type: string
+          enum:
+          - Male
+          - Female
+          - Unknown
+        Email:
+          type: string
+          format: email
+          example: jane.doe@example.com
+        HomePhone:
+          type: string
+          example: 555-123-4567
+        MobilePhone:
+          type: string
+          example: 555-987-6543
+        Address:
+          $ref: '#/components/schemas/Address'
+        InsurancePolicyId:
+          type: integer
+          description: Internal identifier for the patient's insurance policy.
+        InsurancePolicyExternalId:
+          type: string
+          description: External identifier for the patient's insurance policy.
+        LastModifiedDate:
+          type: string
+          format: date-time
+          description: Timestamp of the last modification to the record.
+    CreatePatientResponse:
+      type: object
+      properties:
+        PatientId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetAllPatientsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetPatientResponse:
+      type: object
+      properties:
+        Patient:
+          $ref: '#/components/schemas/Patient'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetPatientsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        LastModifiedStartDate:
+          type: string
+          format: date-time
+        LastModifiedEndDate:
+          type: string
+          format: date-time
+    UpdatePatientResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetPatientsResponse:
+      type: object
+      properties:
+        Patients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Patient'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreatePatientRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Patient:
+          $ref: '#/components/schemas/Patient'
+    UpdatePatientsExternalIDRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientExternalIdMappings:
+          type: array
+          items:
+            type: object
+            properties:
+              PatientId:
+                type: integer
+              ExternalId:
+                type: string
+    UpdatePatientRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Patient:
+          $ref: '#/components/schemas/Patient'
+    GetPatientRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        PatientExternalId:
+          type: string
+    UpdatePatientsExternalIDResponse:
+      type: object
+      properties:
+        UpdatedCount:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    Address:
+      type: object
+      properties:
+        Address1:
+          type: string
+          example: 123 Main St
+        Address2:
+          type: string
+          example: Suite 100
+        City:
+          type: string
+          example: Los Angeles
+        State:
+          type: string
+          example: CA
+        ZipCode:
+          type: string
+          example: '90001'
+        Country:
+          type: string
+          example: US
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

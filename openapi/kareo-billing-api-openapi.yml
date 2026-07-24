@@ -1,0 +1,281 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative Billing API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Billing
+  description: Charges, payments, and transactions
+paths:
+  /KareoServices.svc/CreatePayment:
+    post:
+      operationId: createPayment
+      summary: Post a payment
+      description: Posts a patient or insurance payment to a patient account or specific charge in Kareo.
+      tags:
+      - Billing
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentRequest'
+      responses:
+        '200':
+          description: Payment posted
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreatePaymentResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetPayments:
+    post:
+      operationId: getPayments
+      summary: Retrieve payment records
+      description: Retrieves payment records with optional date range and patient filters.
+      tags:
+      - Billing
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetPaymentsRequest'
+      responses:
+        '200':
+          description: Payments retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetPaymentsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetCharges:
+    post:
+      operationId: getCharges
+      summary: Retrieve charge records
+      description: Retrieves medical charge records (CPT/procedure codes billed) with optional filtering by date range and patient.
+      tags:
+      - Billing
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetChargesRequest'
+      responses:
+        '200':
+          description: Charges retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetChargesResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetTransactions:
+    post:
+      operationId: getTransactions
+      summary: Retrieve financial transactions
+      description: Retrieves financial transaction records for the practice, including charges, payments, and adjustments.
+      tags:
+      - Billing
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetTransactionsRequest'
+      responses:
+        '200':
+          description: Transactions retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetTransactionsResponse'
+        '401':
+          description: Authentication failed
+components:
+  schemas:
+    GetChargesResponse:
+      type: object
+      properties:
+        Charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetPaymentsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
+          type: integer
+    GetTransactionsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+    GetTransactionsResponse:
+      type: object
+      properties:
+        Transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              TransactionId:
+                type: integer
+              TransactionDate:
+                type: string
+                format: date
+              TransactionType:
+                type: string
+              Amount:
+                type: number
+                format: float
+              PatientId:
+                type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreatePaymentResponse:
+      type: object
+      properties:
+        PaymentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetChargesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
+          type: integer
+    Payment:
+      type: object
+      properties:
+        PaymentId:
+          type: integer
+        PatientId:
+          type: integer
+        PaymentDate:
+          type: string
+          format: date
+        PaymentAmount:
+          type: number
+          format: float
+          example: 50.0
+        PaymentType:
+          type: string
+          enum:
+          - PatientPayment
+          - InsurancePayment
+          - Adjustment
+        CheckNumber:
+          type: string
+        Notes:
+          type: string
+    Charge:
+      type: object
+      properties:
+        ChargeId:
+          type: integer
+        PatientId:
+          type: integer
+        EncounterId:
+          type: integer
+        ProcedureCode:
+          type: string
+          example: '99213'
+        Units:
+          type: number
+          example: 1
+        ChargeAmount:
+          type: number
+          format: float
+          example: 150.0
+        DateOfService:
+          type: string
+          format: date
+        InsuranceBalance:
+          type: number
+          format: float
+        PatientBalance:
+          type: number
+          format: float
+    CreatePaymentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Payment:
+          $ref: '#/components/schemas/Payment'
+    GetPaymentsResponse:
+      type: object
+      properties:
+        Payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

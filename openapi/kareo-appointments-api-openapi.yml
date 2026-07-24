@@ -1,0 +1,423 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative Appointments API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Appointments
+  description: Appointment scheduling and management
+paths:
+  /KareoServices.svc/CreateAppointment:
+    post:
+      operationId: createAppointment
+      summary: Create a new appointment
+      description: Schedules a new appointment for a patient with a specified provider at a service location. Returns the appointment identifier.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateAppointmentRequest'
+      responses:
+        '200':
+          description: Appointment created successfully
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateAppointmentResponse'
+        '401':
+          description: Authentication failed
+        '409':
+          description: Scheduling conflict
+  /KareoServices.svc/UpdateAppointment:
+    post:
+      operationId: updateAppointment
+      summary: Update an existing appointment
+      description: Updates the details of an existing appointment including date, time, provider, or service location.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateAppointmentRequest'
+      responses:
+        '200':
+          description: Appointment updated
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdateAppointmentResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Appointment not found
+  /KareoServices.svc/DeleteAppointment:
+    post:
+      operationId: deleteAppointment
+      summary: Delete an appointment
+      description: Cancels and removes an appointment record by appointment identifier.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeleteAppointmentRequest'
+      responses:
+        '200':
+          description: Appointment deleted
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteAppointmentResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Appointment not found
+  /KareoServices.svc/UpdateAppointmentStatus:
+    post:
+      operationId: updateAppointmentStatus
+      summary: Update appointment status
+      description: Updates the status of an appointment (e.g., Confirmed, Cancelled, No-Show, Checked-In).
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateAppointmentStatusRequest'
+      responses:
+        '200':
+          description: Appointment status updated
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdateAppointmentStatusResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Appointment not found
+  /KareoServices.svc/GetAppointment:
+    post:
+      operationId: getAppointment
+      summary: Retrieve a single appointment
+      description: Retrieves a single appointment record by appointment identifier.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetAppointmentRequest'
+      responses:
+        '200':
+          description: Appointment retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetAppointmentResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Appointment not found
+  /KareoServices.svc/GetAppointments:
+    post:
+      operationId: getAppointments
+      summary: Retrieve appointments with filters
+      description: Retrieves a filtered list of appointments. Supports filtering by date range, provider, patient, and status. Recommended polling interval is 5-15 minutes for integrations.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetAppointmentsRequest'
+      responses:
+        '200':
+          description: Appointments retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetAppointmentsResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/CreateAppointmentReason:
+    post:
+      operationId: createAppointmentReason
+      summary: Create an appointment reason/type
+      description: Creates a new appointment reason code for use in scheduling.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateAppointmentReasonRequest'
+      responses:
+        '200':
+          description: Appointment reason created
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateAppointmentReasonResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/GetAppointmentReasons:
+    post:
+      operationId: getAppointmentReasons
+      summary: Retrieve appointment reasons
+      description: Retrieves the list of configured appointment reason codes for the practice.
+      tags:
+      - Appointments
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetAppointmentReasonsRequest'
+      responses:
+        '200':
+          description: Appointment reasons retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetAppointmentReasonsResponse'
+        '401':
+          description: Authentication failed
+components:
+  schemas:
+    UpdateAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
+    UpdateAppointmentStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    AppointmentReason:
+      type: object
+      properties:
+        AppointmentReasonId:
+          type: integer
+        ReasonName:
+          type: string
+          example: Annual Physical
+        Duration:
+          type: integer
+          description: Default duration in minutes.
+          example: 30
+    UpdateAppointmentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetAppointmentResponse:
+      type: object
+      properties:
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
+    GetAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentId:
+          type: integer
+    GetAppointmentReasonsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    DeleteAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentId:
+          type: integer
+    CreateAppointmentResponse:
+      type: object
+      properties:
+        AppointmentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateAppointmentReasonResponse:
+      type: object
+      properties:
+        AppointmentReasonId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    DeleteAppointmentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    Appointment:
+      type: object
+      properties:
+        AppointmentId:
+          type: integer
+          description: Internal Kareo appointment identifier.
+        PatientId:
+          type: integer
+          description: Internal Kareo patient identifier.
+        ProviderId:
+          type: integer
+          description: Internal Kareo provider identifier.
+        ServiceLocationId:
+          type: integer
+          description: Internal Kareo service location identifier.
+        StartTime:
+          type: string
+          format: date-time
+          description: Appointment start date and time.
+          example: '2026-06-15T09:00:00'
+        EndTime:
+          type: string
+          format: date-time
+          description: Appointment end date and time.
+          example: '2026-06-15T09:30:00'
+        AppointmentStatus:
+          type: string
+          enum:
+          - Scheduled
+          - Confirmed
+          - CheckedIn
+          - CheckedOut
+          - Cancelled
+          - NoShow
+          example: Scheduled
+        AppointmentReasonId:
+          type: integer
+          description: Identifier for the appointment reason/type.
+        Notes:
+          type: string
+          description: Free-text notes for the appointment.
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    GetAppointmentsResponse:
+      type: object
+      properties:
+        Appointments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Appointment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateAppointmentReasonRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentReason:
+          $ref: '#/components/schemas/AppointmentReason'
+    GetAppointmentsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        ProviderId:
+          type: integer
+        PatientId:
+          type: integer
+        AppointmentStatus:
+          type: string
+    GetAppointmentReasonsResponse:
+      type: object
+      properties:
+        AppointmentReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppointmentReason'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateAppointmentStatusRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentId:
+          type: integer
+        AppointmentStatus:
+          type: string
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

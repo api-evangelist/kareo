@@ -1,0 +1,330 @@
+openapi: 3.0.3
+info:
+  title: Kareo Integration SOAP Administrative Encounters API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  version: '2.1'
+  contact:
+    name: Kareo / Tebra Support
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  termsOfService: https://www.tebra.com/api-terms-of-use/
+  x-api-type: SOAP
+  x-wsdl-url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+servers:
+- url: https://webservice.kareo.com/services/soap/2.1
+  description: Kareo SOAP Web Service (production)
+tags:
+- name: Encounters
+  description: Clinical encounter and document management
+paths:
+  /KareoServices.svc/CreateEncounter:
+    post:
+      operationId: createEncounter
+      summary: Create a clinical encounter
+      description: Creates a new clinical encounter record linking a patient visit to diagnoses, procedures, and billing codes.
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateEncounterRequest'
+      responses:
+        '200':
+          description: Encounter created
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateEncounterResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/UpdateEncounterStatus:
+    post:
+      operationId: updateEncounterStatus
+      summary: Update encounter status
+      description: Updates the workflow status of an encounter (e.g., Draft, Submitted, Approved).
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdateEncounterStatusRequest'
+      responses:
+        '200':
+          description: Encounter status updated
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdateEncounterStatusResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Encounter not found
+  /KareoServices.svc/GetEncounterDetails:
+    post:
+      operationId: getEncounterDetails
+      summary: Retrieve encounter details
+      description: Retrieves detailed information about a clinical encounter including diagnoses, procedures, and associated billing data.
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GetEncounterDetailsRequest'
+      responses:
+        '200':
+          description: Encounter details retrieved
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetEncounterDetailsResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Encounter not found
+  /KareoServices.svc/UpdatePrimaryPatientCase:
+    post:
+      operationId: updatePrimaryPatientCase
+      summary: Update the primary case for a patient
+      description: Updates the primary insurance case and billing information associated with a patient's account.
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UpdatePrimaryPatientCaseRequest'
+      responses:
+        '200':
+          description: Patient case updated
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdatePrimaryPatientCaseResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/CreateDocument:
+    post:
+      operationId: createDocument
+      summary: Create a clinical document
+      description: Attaches or creates a document record in the Kareo EHR associated with a patient or encounter.
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/CreateDocumentRequest'
+      responses:
+        '200':
+          description: Document created
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateDocumentResponse'
+        '401':
+          description: Authentication failed
+  /KareoServices.svc/DeleteDocument:
+    post:
+      operationId: deleteDocument
+      summary: Delete a clinical document
+      description: Removes a document record from a patient or encounter in the Kareo EHR.
+      tags:
+      - Encounters
+      requestBody:
+        required: true
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeleteDocumentRequest'
+      responses:
+        '200':
+          description: Document deleted
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteDocumentResponse'
+        '401':
+          description: Authentication failed
+        '404':
+          description: Document not found
+components:
+  schemas:
+    DeleteDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        DocumentId:
+          type: integer
+    CreateDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        EncounterId:
+          type: integer
+        DocumentName:
+          type: string
+        DocumentContent:
+          type: string
+          format: byte
+          description: Base64-encoded document content.
+        DocumentType:
+          type: string
+    GetEncounterDetailsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        EncounterId:
+          type: integer
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    UpdatePrimaryPatientCaseResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetEncounterDetailsResponse:
+      type: object
+      properties:
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateEncounterStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateEncounterStatusRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        EncounterId:
+          type: integer
+        EncounterStatus:
+          type: string
+    CreateDocumentResponse:
+      type: object
+      properties:
+        DocumentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateEncounterResponse:
+      type: object
+      properties:
+        EncounterId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePrimaryPatientCaseRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
+    Encounter:
+      type: object
+      properties:
+        EncounterId:
+          type: integer
+          description: Internal Kareo encounter identifier.
+        PatientId:
+          type: integer
+        ProviderId:
+          type: integer
+        AppointmentId:
+          type: integer
+        EncounterStatus:
+          type: string
+          enum:
+          - Draft
+          - Submitted
+          - Approved
+          - Voided
+        DateOfService:
+          type: string
+          format: date
+          example: '2026-06-15'
+        DiagnosisCodes:
+          type: array
+          items:
+            type: string
+          description: ICD-10 diagnosis codes associated with the encounter.
+          example:
+          - J06.9
+          - Z00.00
+        ProcedureCodes:
+          type: array
+          items:
+            type: string
+          description: CPT procedure codes billed in the encounter.
+          example:
+          - '99213'
+    DeleteDocumentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+externalDocs:
+  description: Kareo API and Integration Documentation
+  url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
