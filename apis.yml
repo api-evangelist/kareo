@@ -8,7 +8,19 @@ description: >-
   API enables developers to build programs that access practice management
   data and functionality through authenticated XML-based SOAP requests.
   The platform also exposes a Clinical Open API for EHR data access.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kareo.png
 url: https://raw.githubusercontent.com/api-evangelist/kareo/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -25,52 +37,109 @@ tags:
   - Insurance Eligibility
   - HIPAA
 apis:
-  - aid: kareo:kareo-soap-api
-    name: Kareo Integration SOAP API
-    description: >-
-      The Kareo Integration SOAP API provides a web services interface for
-      integrating third-party applications with practice management data.
-      Supports read access to patients, providers, appointments, transactions,
-      and charges, as well as write access to patients and encounters.
-      Authentication requires a username, password, and a Customer Key issued
-      by a System Administrator.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
-    baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
-    tags:
-      - SOAP
-      - Practice Management
-      - Billing
-      - Patients
-      - Appointments
-      - Encounters
-    properties:
-      - type: Documentation
-        url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
-      - type: WSDL
-        url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
-      - type: TermsOfService
-        url: https://www.tebra.com/api-terms-of-use/
-  - aid: kareo:kareo-clinical-open-api
-    name: Kareo Clinical Open API
-    description: >-
-      The Kareo Clinical Open API provides REST-based access to EHR clinical
-      data, exposing patient clinical records, MACRA/MIPS reporting data, and
-      related healthcare information. The API is documented with a Swagger UI
-      interface and is accessible via api.kareo.com.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://api.kareo.com/clinical/v1/swagger/
-    baseURL: https://api.kareo.com/clinical/v1
-    tags:
-      - REST
-      - Clinical
-      - EHR
-      - MACRA
-      - MIPS
-      - OpenAPI
-    properties:
-      - type: Documentation
-        url: https://api.kareo.com/clinical/v1/swagger/
+- aid: kareo:kareo-soap-api
+  name: Kareo Integration SOAP API
+  description: >-
+    The Kareo Integration SOAP API provides a web services interface for integrating third-party applications
+    with practice management data. Supports read access to patients, providers, appointments, transactions,
+    and charges, as well as write access to patients and encounters. Authentication requires a username,
+    password, and a Customer Key issued by a System Administrator.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - SOAP
+  - Practice Management
+  - Billing
+  - Patients
+  - Appointments
+  - Encounters
+  properties:
+  - type: Documentation
+    url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  - type: WSDL
+    url: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl
+  - type: TermsOfService
+    url: https://www.tebra.com/api-terms-of-use/
+- aid: kareo:kareo-clinical-open-api
+  name: Kareo Clinical Open API
+  description: >-
+    The Kareo Clinical Open API provides REST-based access to EHR clinical data, exposing patient clinical
+    records, MACRA/MIPS reporting data, and related healthcare information. The API is documented with
+    a Swagger UI interface and is accessible via api.kareo.com.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.kareo.com/clinical/v1/swagger/
+  baseURL: https://api.kareo.com/clinical/v1
+  tags:
+  - REST
+  - Clinical
+  - EHR
+  - MACRA
+  - MIPS
+  - OpenAPI
+  properties:
+  - type: Documentation
+    url: https://api.kareo.com/clinical/v1/swagger/
+- aid: kareo:kareo-administrative-api
+  name: Kareo Administrative API
+  description: Vendor registration, throttles, and configuration
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Administrative
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-administrative-api-openapi.yml
+- aid: kareo:kareo-appointments-api
+  name: Kareo Appointments API
+  description: Appointment scheduling and management
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Appointments
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-appointments-api-openapi.yml
+- aid: kareo:kareo-billing-api
+  name: Kareo Billing API
+  description: Charges, payments, and transactions
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-billing-api-openapi.yml
+- aid: kareo:kareo-encounters-api
+  name: Kareo Encounters API
+  description: Clinical encounter and document management
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Encounters
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-encounters-api-openapi.yml
+- aid: kareo:kareo-patients-api
+  name: Kareo Patients API
+  description: Patient demographic and record management
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Patients
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-patients-api-openapi.yml
+- aid: kareo:kareo-providers-api
+  name: Kareo Providers API
+  description: Provider and practice administration
+  humanURL: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
+  baseURL: https://webservice.kareo.com/services/soap/2.1/KareoServices.svc
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/kareo-providers-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/kareo-agentic-access.yml
