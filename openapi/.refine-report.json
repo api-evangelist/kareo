@@ -1,0 +1,24 @@
+{
+  "provider": "kareo",
+  "sources": [
+    "kareo-administrative-api-openapi.yml",
+    "kareo-appointments-api-openapi.yml",
+    "kareo-billing-api-openapi.yml",
+    "kareo-encounters-api-openapi.yml",
+    "kareo-patients-api-openapi.yml",
+    "kareo-providers-api-openapi.yml"
+  ],
+  "outputs": [
+    "kareo-administrative-api-openapi.yml",
+    "kareo-appointments-api-openapi.yml",
+    "kareo-billing-api-openapi.yml",
+    "kareo-encounters-api-openapi.yml",
+    "kareo-patients-api-openapi.yml",
+    "kareo-providers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
