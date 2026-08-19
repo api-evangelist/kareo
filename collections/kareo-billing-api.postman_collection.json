@@ -1,0 +1,556 @@
+{
+  "item": [
+    {
+      "id": "bbe20a8f-b306-43d9-b7a7-58143ae49da9",
+      "name": "Billing",
+      "description": {
+        "content": "Charges, payments, and transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b6bd546-0c7d-4f63-b9ef-4c058a60410b",
+          "name": "Post a payment",
+          "request": {
+            "name": "Post a payment",
+            "description": {
+              "content": "Posts a patient or insurance payment to a patient account or specific charge in Kareo.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreatePayment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Payment>\n    <PaymentId>(integer)</PaymentId>\n    <PatientId>(integer)</PatientId>\n    <PaymentDate>(string)</PaymentDate>\n    <PaymentAmount>(number)</PaymentAmount>\n    <PaymentType>(string)</PaymentType>\n    <CheckNumber>(string)</CheckNumber>\n    <Notes>(string)</Notes>\n  </Payment>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce505d28-25d1-4923-955d-6a3ba9e0cab9",
+              "name": "Payment posted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreatePayment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Payment>\n    <PaymentId>(integer)</PaymentId>\n    <PatientId>(integer)</PatientId>\n    <PaymentDate>(string)</PaymentDate>\n    <PaymentAmount>50</PaymentAmount>\n    <PaymentType>(string)</PaymentType>\n    <CheckNumber>(string)</CheckNumber>\n    <Notes>(string)</Notes>\n  </Payment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <PaymentId>(integer)</PaymentId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "dfbdf282-bc6f-4642-b5d2-c02d79861c09",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreatePayment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Payment>\n    <PaymentId>(integer)</PaymentId>\n    <PatientId>(integer)</PatientId>\n    <PaymentDate>(string)</PaymentDate>\n    <PaymentAmount>50</PaymentAmount>\n    <PaymentType>(string)</PaymentType>\n    <CheckNumber>(string)</CheckNumber>\n    <Notes>(string)</Notes>\n  </Payment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbab199b-2825-4418-9330-b90d3988d7b2",
+          "name": "Retrieve payment records",
+          "request": {
+            "name": "Retrieve payment records",
+            "description": {
+              "content": "Retrieves payment records with optional date range and patient filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetPayments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "760bc6aa-dfc9-43ab-bf72-9181629f00ea",
+              "name": "Payments retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPayments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Payments>\n    <PaymentId>(integer)</PaymentId>\n    <PatientId>(integer)</PatientId>\n    <PaymentDate>(string)</PaymentDate>\n    <PaymentAmount>50</PaymentAmount>\n    <PaymentType>(string)</PaymentType>\n    <CheckNumber>(string)</CheckNumber>\n    <Notes>(string)</Notes>\n  </Payments>\n  <Payments>\n    <PaymentId>(integer)</PaymentId>\n    <PatientId>(integer)</PatientId>\n    <PaymentDate>(string)</PaymentDate>\n    <PaymentAmount>50</PaymentAmount>\n    <PaymentType>(string)</PaymentType>\n    <CheckNumber>(string)</CheckNumber>\n    <Notes>(string)</Notes>\n  </Payments>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "d7238bf3-91f0-4306-89f2-7eda85e9648d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPayments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7524eddb-961e-44a7-9537-d1244e3c532a",
+          "name": "Retrieve charge records",
+          "request": {
+            "name": "Retrieve charge records",
+            "description": {
+              "content": "Retrieves medical charge records (CPT/procedure codes billed) with optional filtering by date range and patient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetCharges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de2cfda0-2277-4e85-9922-89d892ec8296",
+              "name": "Charges retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetCharges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Charges>\n    <ChargeId>(integer)</ChargeId>\n    <PatientId>(integer)</PatientId>\n    <EncounterId>(integer)</EncounterId>\n    <ProcedureCode>99213</ProcedureCode>\n    <Units>1</Units>\n    <ChargeAmount>150</ChargeAmount>\n    <DateOfService>(string)</DateOfService>\n    <InsuranceBalance>(number)</InsuranceBalance>\n    <PatientBalance>(number)</PatientBalance>\n  </Charges>\n  <Charges>\n    <ChargeId>(integer)</ChargeId>\n    <PatientId>(integer)</PatientId>\n    <EncounterId>(integer)</EncounterId>\n    <ProcedureCode>99213</ProcedureCode>\n    <Units>1</Units>\n    <ChargeAmount>150</ChargeAmount>\n    <DateOfService>(string)</DateOfService>\n    <InsuranceBalance>(number)</InsuranceBalance>\n    <PatientBalance>(number)</PatientBalance>\n  </Charges>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "74b9c0c6-d55b-459c-968f-f035c5b45515",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetCharges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <PatientId>(integer)</PatientId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bffc2fa-4707-430c-b632-60c29136453d",
+          "name": "Retrieve financial transactions",
+          "request": {
+            "name": "Retrieve financial transactions",
+            "description": {
+              "content": "Retrieves financial transaction records for the practice, including charges, payments, and adjustments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetTransactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0101e402-07d1-4494-9fb8-2da877fd14bb",
+              "name": "Transactions retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Transactions>\n    <TransactionId>(integer)</TransactionId>\n    <TransactionDate>(string)</TransactionDate>\n    <TransactionType>(string)</TransactionType>\n    <Amount>(number)</Amount>\n    <PatientId>(integer)</PatientId>\n  </Transactions>\n  <Transactions>\n    <TransactionId>(integer)</TransactionId>\n    <TransactionDate>(string)</TransactionDate>\n    <TransactionType>(string)</TransactionType>\n    <Amount>(number)</Amount>\n    <PatientId>(integer)</PatientId>\n  </Transactions>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "cf2339c7-9808-451b-9529-68ecc1b39f8d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webservice.kareo.com/services/soap/2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b295497a-d32a-49f7-9a7d-c5aec6e8372b",
+    "name": "Kareo Integration SOAP Administrative Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.\n\nContact Support:\n Name: Kareo / Tebra Support",
+      "type": "text/plain"
+    }
+  }
+}

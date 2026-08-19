@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative Appointments API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreateAppointment"
+          },
+          "docs": "Schedules a new appointment for a patient with a specified provider at a service location. Returns the appointment identifier."
+        },
+        {
+          "info": {
+            "name": "Update an existing appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdateAppointment"
+          },
+          "docs": "Updates the details of an existing appointment including date, time, provider, or service location."
+        },
+        {
+          "info": {
+            "name": "Delete an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/DeleteAppointment"
+          },
+          "docs": "Cancels and removes an appointment record by appointment identifier."
+        },
+        {
+          "info": {
+            "name": "Update appointment status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdateAppointmentStatus"
+          },
+          "docs": "Updates the status of an appointment (e.g., Confirmed, Cancelled, No-Show, Checked-In)."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetAppointment"
+          },
+          "docs": "Retrieves a single appointment record by appointment identifier."
+        },
+        {
+          "info": {
+            "name": "Retrieve appointments with filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetAppointments"
+          },
+          "docs": "Retrieves a filtered list of appointments. Supports filtering by date range, provider, patient, and status. Recommended polling interval is 5-15 minutes for integrations."
+        },
+        {
+          "info": {
+            "name": "Create an appointment reason/type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreateAppointmentReason"
+          },
+          "docs": "Creates a new appointment reason code for use in scheduling."
+        },
+        {
+          "info": {
+            "name": "Retrieve appointment reasons",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetAppointmentReasons"
+          },
+          "docs": "Retrieves the list of configured appointment reason codes for the practice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

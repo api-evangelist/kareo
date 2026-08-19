@@ -1,0 +1,932 @@
+{
+  "item": [
+    {
+      "id": "f6f3448c-0fbf-42ff-9340-b7841881b349",
+      "name": "Patients",
+      "description": {
+        "content": "Patient demographic and record management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "190eed0a-5fad-4ab0-9632-717ecee2a81d",
+          "name": "Create a new patient record",
+          "request": {
+            "name": "Create a new patient record",
+            "description": {
+              "content": "Creates a new patient record in Kareo practice management. Returns the newly created patient identifier. Requires CustomerKey authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreatePatient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>(integer)</PatientId>\n    <PatientExternalId>(string)</PatientExternalId>\n    <PatientFullName>(string)</PatientFullName>\n    <FirstName>(string)</FirstName>\n    <LastName>(string)</LastName>\n    <DateOfBirth>(string)</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>(string)</Email>\n    <HomePhone>(string)</HomePhone>\n    <MobilePhone>(string)</MobilePhone>\n    <Address>\n      <Address1>(string)</Address1>\n      <Address2>(string)</Address2>\n      <City>(string)</City>\n      <State>(string)</State>\n      <ZipCode>(string)</ZipCode>\n      <Country>(string)</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70861dea-1c8c-4d96-9ff8-a28fe8e04703",
+              "name": "Patient created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <PatientId>(integer)</PatientId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "d7c421c0-a0af-4bb4-9fcd-11948ae5296e",
+              "name": "Bad request - invalid patient data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7552609d-353e-4705-ac9e-a46f93294197",
+              "name": "Authentication failed - invalid CustomerKey, username, or password",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "018f6bdd-717c-456a-9fe5-7f4390fb7f1e",
+          "name": "Update an existing patient record",
+          "request": {
+            "name": "Update an existing patient record",
+            "description": {
+              "content": "Updates demographic and contact information for an existing patient record identified by PatientId or PatientExternalId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdatePatient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>(integer)</PatientId>\n    <PatientExternalId>(string)</PatientExternalId>\n    <PatientFullName>(string)</PatientFullName>\n    <FirstName>(string)</FirstName>\n    <LastName>(string)</LastName>\n    <DateOfBirth>(string)</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>(string)</Email>\n    <HomePhone>(string)</HomePhone>\n    <MobilePhone>(string)</MobilePhone>\n    <Address>\n      <Address1>(string)</Address1>\n      <Address2>(string)</Address2>\n      <City>(string)</City>\n      <State>(string)</State>\n      <ZipCode>(string)</ZipCode>\n      <Country>(string)</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e9e8183-f921-4bae-a0fb-3bea075aa022",
+              "name": "Patient updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "07f53a3e-cc38-41b8-8eaa-92f012829c0a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "078a839b-23d0-439a-9cec-bafd45644119",
+              "name": "Patient not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "834d7b61-11b7-4c39-b69b-5f22a3de49bb",
+          "name": "Retrieve a single patient record",
+          "request": {
+            "name": "Retrieve a single patient record",
+            "description": {
+              "content": "Retrieves a single patient record by PatientId or PatientExternalId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetPatient"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <PatientExternalId>(string)</PatientExternalId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c33aad5-1425-435f-99ca-a81405ec566c",
+              "name": "Patient record retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <PatientExternalId>(string)</PatientExternalId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Patient>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patient>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "214974b0-f8b9-4ca7-b86d-a35e788d754d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <PatientExternalId>(string)</PatientExternalId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ab7d2c1-9fed-4617-9227-58e7c9b5548b",
+              "name": "Patient not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPatient"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <PatientExternalId>(string)</PatientExternalId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "381e9843-d7a7-492c-890b-14b12105ca07",
+          "name": "Retrieve multiple patient records with filters",
+          "request": {
+            "name": "Retrieve multiple patient records with filters",
+            "description": {
+              "content": "Retrieves a filtered list of patient records. Supports filtering by LastModifiedDate range and other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetPatients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <LastModifiedStartDate>(string)</LastModifiedStartDate>\n  <LastModifiedEndDate>(string)</LastModifiedEndDate>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fd61e84-1f9b-4907-b2e8-c15e0a52df38",
+              "name": "Patient list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPatients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <LastModifiedStartDate>(string)</LastModifiedStartDate>\n  <LastModifiedEndDate>(string)</LastModifiedEndDate>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Patients>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patients>\n  <Patients>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patients>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "6bbd2812-7038-441b-be30-dca1c2a3da0a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetPatients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <LastModifiedStartDate>(string)</LastModifiedStartDate>\n  <LastModifiedEndDate>(string)</LastModifiedEndDate>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5b1658b-9439-44e4-a54c-0fc198b32ecf",
+          "name": "Retrieve all patient records for a practice",
+          "request": {
+            "name": "Retrieve all patient records for a practice",
+            "description": {
+              "content": "Retrieves all patient records for the authenticated practice. Use with caution on large datasets; consider GetPatients with date filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetAllPatients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ecaf9551-ba01-40da-9f38-2f8f3e9a0916",
+              "name": "All patients retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAllPatients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Patients>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patients>\n  <Patients>\n    <PatientId>100234</PatientId>\n    <PatientExternalId>EXT-PT-9876</PatientExternalId>\n    <PatientFullName>Doe, Jane</PatientFullName>\n    <FirstName>Jane</FirstName>\n    <LastName>Doe</LastName>\n    <DateOfBirth>1985-03-15</DateOfBirth>\n    <Gender>(string)</Gender>\n    <Email>jane.doe@example.com</Email>\n    <HomePhone>555-123-4567</HomePhone>\n    <MobilePhone>555-987-6543</MobilePhone>\n    <Address>\n      <Address1>123 Main St</Address1>\n      <Address2>Suite 100</Address2>\n      <City>Los Angeles</City>\n      <State>CA</State>\n      <ZipCode>90001</ZipCode>\n      <Country>US</Country>\n    </Address>\n    <InsurancePolicyId>(integer)</InsurancePolicyId>\n    <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n    <LastModifiedDate>(string)</LastModifiedDate>\n  </Patients>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "5123635c-bd70-4c39-99bd-8501b672607d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAllPatients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab3e237f-7edb-4c26-bc4e-7c4e876adcfb",
+          "name": "Update external identifier for patients",
+          "request": {
+            "name": "Update external identifier for patients",
+            "description": {
+              "content": "Bulk updates the external identifier field for one or more patient records, enabling synchronization with external systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdatePatientsExternalID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df0fa682-59e3-40fb-bead-0dbcccc38605",
+              "name": "External IDs updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePatientsExternalID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <UpdatedCount>(integer)</UpdatedCount>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "9549a9cc-c111-44e6-8ede-71d576dd8f09",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePatientsExternalID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n  <PatientExternalIdMappings>\n    <PatientId>(integer)</PatientId>\n    <ExternalId>(string)</ExternalId>\n  </PatientExternalIdMappings>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webservice.kareo.com/services/soap/2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cebb546e-8c06-4b6c-8e2c-97b255ea30dd",
+    "name": "Kareo Integration SOAP Administrative Patients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.\n\nContact Support:\n Name: Kareo / Tebra Support",
+      "type": "text/plain"
+    }
+  }
+}

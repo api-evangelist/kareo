@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative Patients API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new patient record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreatePatient"
+          },
+          "docs": "Creates a new patient record in Kareo practice management. Returns the newly created patient identifier. Requires CustomerKey authentication."
+        },
+        {
+          "info": {
+            "name": "Update an existing patient record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdatePatient"
+          },
+          "docs": "Updates demographic and contact information for an existing patient record identified by PatientId or PatientExternalId."
+        },
+        {
+          "info": {
+            "name": "Retrieve a single patient record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetPatient"
+          },
+          "docs": "Retrieves a single patient record by PatientId or PatientExternalId."
+        },
+        {
+          "info": {
+            "name": "Retrieve multiple patient records with filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetPatients"
+          },
+          "docs": "Retrieves a filtered list of patient records. Supports filtering by LastModifiedDate range and other criteria."
+        },
+        {
+          "info": {
+            "name": "Retrieve all patient records for a practice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetAllPatients"
+          },
+          "docs": "Retrieves all patient records for the authenticated practice. Use with caution on large datasets; consider GetPatients with date filters."
+        },
+        {
+          "info": {
+            "name": "Update external identifier for patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdatePatientsExternalID"
+          },
+          "docs": "Bulk updates the external identifier field for one or more patient records, enabling synchronization with external systems."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

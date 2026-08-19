@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative Encounters API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Encounters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a clinical encounter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreateEncounter"
+          },
+          "docs": "Creates a new clinical encounter record linking a patient visit to diagnoses, procedures, and billing codes."
+        },
+        {
+          "info": {
+            "name": "Update encounter status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdateEncounterStatus"
+          },
+          "docs": "Updates the workflow status of an encounter (e.g., Draft, Submitted, Approved)."
+        },
+        {
+          "info": {
+            "name": "Retrieve encounter details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetEncounterDetails"
+          },
+          "docs": "Retrieves detailed information about a clinical encounter including diagnoses, procedures, and associated billing data."
+        },
+        {
+          "info": {
+            "name": "Update the primary case for a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/UpdatePrimaryPatientCase"
+          },
+          "docs": "Updates the primary insurance case and billing information associated with a patient's account."
+        },
+        {
+          "info": {
+            "name": "Create a clinical document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreateDocument"
+          },
+          "docs": "Attaches or creates a document record in the Kareo EHR associated with a patient or encounter."
+        },
+        {
+          "info": {
+            "name": "Delete a clinical document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/DeleteDocument"
+          },
+          "docs": "Removes a document record from a patient or encounter in the Kareo EHR."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

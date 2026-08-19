@@ -1,0 +1,932 @@
+{
+  "item": [
+    {
+      "id": "cc29140e-3d1f-4c03-8adb-93a688324425",
+      "name": "Encounters",
+      "description": {
+        "content": "Clinical encounter and document management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aac09ca7-84e4-48d7-b861-dbe0e81ee797",
+          "name": "Create a clinical encounter",
+          "request": {
+            "name": "Create a clinical encounter",
+            "description": {
+              "content": "Creates a new clinical encounter record linking a patient visit to diagnoses, procedures, and billing codes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreateEncounter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Encounter>\n    <EncounterId>(integer)</EncounterId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <AppointmentId>(integer)</AppointmentId>\n    <EncounterStatus>(string)</EncounterStatus>\n    <DateOfService>(string)</DateOfService>\n    <DiagnosisCodes>(string)</DiagnosisCodes>\n    <DiagnosisCodes>(string)</DiagnosisCodes>\n    <ProcedureCodes>(string)</ProcedureCodes>\n    <ProcedureCodes>(string)</ProcedureCodes>\n  </Encounter>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "016112cf-9443-4723-8ebc-5a9874bdd5dc",
+              "name": "Encounter created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateEncounter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Encounter>\n    <EncounterId>(integer)</EncounterId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <AppointmentId>(integer)</AppointmentId>\n    <EncounterStatus>(string)</EncounterStatus>\n    <DateOfService>2026-06-15</DateOfService>\n    <DiagnosisCodes>J06.9</DiagnosisCodes>\n    <DiagnosisCodes>Z00.00</DiagnosisCodes>\n    <ProcedureCodes>99213</ProcedureCodes>\n  </Encounter>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <EncounterId>(integer)</EncounterId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "fc6ce720-b59e-4382-b450-6dfc6274f96c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateEncounter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Encounter>\n    <EncounterId>(integer)</EncounterId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <AppointmentId>(integer)</AppointmentId>\n    <EncounterStatus>(string)</EncounterStatus>\n    <DateOfService>2026-06-15</DateOfService>\n    <DiagnosisCodes>J06.9</DiagnosisCodes>\n    <DiagnosisCodes>Z00.00</DiagnosisCodes>\n    <ProcedureCodes>99213</ProcedureCodes>\n  </Encounter>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1a12ed2-7f0b-4ed4-80f8-b7f20ec3d3b5",
+          "name": "Update encounter status",
+          "request": {
+            "name": "Update encounter status",
+            "description": {
+              "content": "Updates the workflow status of an encounter (e.g., Draft, Submitted, Approved).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdateEncounterStatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n  <EncounterStatus>(string)</EncounterStatus>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4097def5-8c58-428f-bc92-19be4b9f3853",
+              "name": "Encounter status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateEncounterStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n  <EncounterStatus>(string)</EncounterStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "1748f229-3bb9-44ab-ba1c-04dd96fb8d9b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateEncounterStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n  <EncounterStatus>(string)</EncounterStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b1b01f7-3b68-43c7-afc6-282ec226bee1",
+              "name": "Encounter not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateEncounterStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n  <EncounterStatus>(string)</EncounterStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "000d2bd8-47ca-4230-ad5e-bb000c74f26c",
+          "name": "Retrieve encounter details",
+          "request": {
+            "name": "Retrieve encounter details",
+            "description": {
+              "content": "Retrieves detailed information about a clinical encounter including diagnoses, procedures, and associated billing data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetEncounterDetails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15d53a3f-138f-4f87-83df-2f7537675c5f",
+              "name": "Encounter details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetEncounterDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Encounter>\n    <EncounterId>(integer)</EncounterId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <AppointmentId>(integer)</AppointmentId>\n    <EncounterStatus>(string)</EncounterStatus>\n    <DateOfService>2026-06-15</DateOfService>\n    <DiagnosisCodes>J06.9</DiagnosisCodes>\n    <DiagnosisCodes>Z00.00</DiagnosisCodes>\n    <ProcedureCodes>99213</ProcedureCodes>\n  </Encounter>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "1f4da99d-ecad-4c1a-a083-d42274d61391",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetEncounterDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b54460bc-c070-4337-a311-a1887664d0b8",
+              "name": "Encounter not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetEncounterDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <EncounterId>(integer)</EncounterId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc5830b3-abd0-4128-9100-1372dc389fa9",
+          "name": "Update the primary case for a patient",
+          "request": {
+            "name": "Update the primary case for a patient",
+            "description": {
+              "content": "Updates the primary insurance case and billing information associated with a patient's account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdatePrimaryPatientCase"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <InsurancePolicyId>(integer)</InsurancePolicyId>\n  <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a7ea1d0-b7e2-4846-918e-1eaf7ec0efb3",
+              "name": "Patient case updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePrimaryPatientCase"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <InsurancePolicyId>(integer)</InsurancePolicyId>\n  <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "b20eb2ae-c0fe-4e20-8241-3a48a8b7a0aa",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdatePrimaryPatientCase"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <InsurancePolicyId>(integer)</InsurancePolicyId>\n  <InsurancePolicyExternalId>(string)</InsurancePolicyExternalId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac2709c5-a75f-485e-b296-32acf504528c",
+          "name": "Create a clinical document",
+          "request": {
+            "name": "Create a clinical document",
+            "description": {
+              "content": "Attaches or creates a document record in the Kareo EHR associated with a patient or encounter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreateDocument"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <EncounterId>(integer)</EncounterId>\n  <DocumentName>(string)</DocumentName>\n  <DocumentContent>(string)</DocumentContent>\n  <DocumentType>(string)</DocumentType>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22d981b8-2674-4dfa-9086-9791707a397a",
+              "name": "Document created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <EncounterId>(integer)</EncounterId>\n  <DocumentName>(string)</DocumentName>\n  <DocumentContent>(string)</DocumentContent>\n  <DocumentType>(string)</DocumentType>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <DocumentId>(integer)</DocumentId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "e847b807-4ecf-445d-a1d4-ec89149e47ee",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <PatientId>(integer)</PatientId>\n  <EncounterId>(integer)</EncounterId>\n  <DocumentName>(string)</DocumentName>\n  <DocumentContent>(string)</DocumentContent>\n  <DocumentType>(string)</DocumentType>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0dacfab-697f-4cf1-9c9c-962971983f55",
+          "name": "Delete a clinical document",
+          "request": {
+            "name": "Delete a clinical document",
+            "description": {
+              "content": "Removes a document record from a patient or encounter in the Kareo EHR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "DeleteDocument"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <DocumentId>(integer)</DocumentId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cdf17001-0c00-4bd0-b039-c9201d70e93e",
+              "name": "Document deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <DocumentId>(integer)</DocumentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "6c8a0c04-41ba-4c8d-a043-3278e3038826",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <DocumentId>(integer)</DocumentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f9e4149-9c5a-419d-b534-10016354a946",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <DocumentId>(integer)</DocumentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webservice.kareo.com/services/soap/2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f6a1dd91-af55-44bd-8f43-09539c91ac09",
+    "name": "Kareo Integration SOAP Administrative Encounters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.\n\nContact Support:\n Name: Kareo / Tebra Support",
+      "type": "text/plain"
+    }
+  }
+}

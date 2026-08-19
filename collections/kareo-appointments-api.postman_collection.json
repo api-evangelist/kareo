@@ -1,0 +1,1270 @@
+{
+  "item": [
+    {
+      "id": "d73eef17-d362-41e1-b745-b9d274b283cc",
+      "name": "Appointments",
+      "description": {
+        "content": "Appointment scheduling and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bdf4730e-2496-4c10-b0d8-c012f3a79ca4",
+          "name": "Create a new appointment",
+          "request": {
+            "name": "Create a new appointment",
+            "description": {
+              "content": "Schedules a new appointment for a patient with a specified provider at a service location. Returns the appointment identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreateAppointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>(string)</StartTime>\n    <EndTime>(string)</EndTime>\n    <AppointmentStatus>(string)</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb8557f9-af1b-45ac-9821-a65b29ac7c3b",
+              "name": "Appointment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <AppointmentId>(integer)</AppointmentId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "ed1bca52-6e08-4628-b802-9d3bbfcd1633",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2fa0256-c439-4169-8aac-937a6bf704c5",
+              "name": "Scheduling conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcd3218e-087e-4199-96a9-d78dc0cef820",
+          "name": "Update an existing appointment",
+          "request": {
+            "name": "Update an existing appointment",
+            "description": {
+              "content": "Updates the details of an existing appointment including date, time, provider, or service location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdateAppointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>(string)</StartTime>\n    <EndTime>(string)</EndTime>\n    <AppointmentStatus>(string)</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11e8372a-5eea-4012-a8cd-4abfc6a2111d",
+              "name": "Appointment updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "f7f8ac34-bb2f-4daf-bd07-792643ef9e11",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ea69328-68c8-4a40-8d63-82819a4453f5",
+              "name": "Appointment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0520936-ae19-42ab-a273-841d7f2864d2",
+          "name": "Delete an appointment",
+          "request": {
+            "name": "Delete an appointment",
+            "description": {
+              "content": "Cancels and removes an appointment record by appointment identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "DeleteAppointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be06011f-54bd-4276-8de0-e514f5974563",
+              "name": "Appointment deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "01ee81de-ee0a-4f6c-afa4-25bd9caed35a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2a9cc84-3e83-4951-9c7e-6f52b7744a5f",
+              "name": "Appointment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "DeleteAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "877e1d12-140a-48b1-860e-3e20ab6fcc7e",
+          "name": "Update appointment status",
+          "request": {
+            "name": "Update appointment status",
+            "description": {
+              "content": "Updates the status of an appointment (e.g., Confirmed, Cancelled, No-Show, Checked-In).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "UpdateAppointmentStatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6df8a1f2-2a75-43e6-9f1d-79383962dcb8",
+              "name": "Appointment status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointmentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Success>(boolean)</Success>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "6b43d57a-171a-4cfa-9ec5-e966424807f0",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointmentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "434811d2-d535-49dd-b5e8-12a81f4f3969",
+              "name": "Appointment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "UpdateAppointmentStatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8f07d02-e2b2-489e-81c0-8fba4427111a",
+          "name": "Retrieve a single appointment",
+          "request": {
+            "name": "Retrieve a single appointment",
+            "description": {
+              "content": "Retrieves a single appointment record by appointment identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetAppointment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60ab4de5-4e44-4731-808d-f42a9bccef07",
+              "name": "Appointment retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Appointment>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointment>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "4212330d-b5b3-478e-b63f-896527534ab8",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97ff2dc8-55c9-4ed2-847b-f4fbb7127b6f",
+              "name": "Appointment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentId>(integer)</AppointmentId>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91b6754d-0767-4418-9da3-a98aa7f1a055",
+          "name": "Retrieve appointments with filters",
+          "request": {
+            "name": "Retrieve appointments with filters",
+            "description": {
+              "content": "Retrieves a filtered list of appointments. Supports filtering by date range, provider, patient, and status. Recommended polling interval is 5-15 minutes for integrations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetAppointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <ProviderId>(integer)</ProviderId>\n  <PatientId>(integer)</PatientId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d9268bb-b072-4e5b-8f8d-4473022a2940",
+              "name": "Appointments retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <ProviderId>(integer)</ProviderId>\n  <PatientId>(integer)</PatientId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <Appointments>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointments>\n  <Appointments>\n    <AppointmentId>(integer)</AppointmentId>\n    <PatientId>(integer)</PatientId>\n    <ProviderId>(integer)</ProviderId>\n    <ServiceLocationId>(integer)</ServiceLocationId>\n    <StartTime>2026-06-15T09:00:00</StartTime>\n    <EndTime>2026-06-15T09:30:00</EndTime>\n    <AppointmentStatus>Scheduled</AppointmentStatus>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <Notes>(string)</Notes>\n  </Appointments>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "8dd84bde-75b1-4fc6-83e4-9ef8b8627889",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <StartDate>(string)</StartDate>\n  <EndDate>(string)</EndDate>\n  <ProviderId>(integer)</ProviderId>\n  <PatientId>(integer)</PatientId>\n  <AppointmentStatus>(string)</AppointmentStatus>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fce84eb-99ba-4189-be09-1e5ab35889c6",
+          "name": "Create an appointment reason/type",
+          "request": {
+            "name": "Create an appointment reason/type",
+            "description": {
+              "content": "Creates a new appointment reason code for use in scheduling.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "CreateAppointmentReason"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentReason>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <ReasonName>(string)</ReasonName>\n    <Duration>(integer)</Duration>\n  </AppointmentReason>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ab88fb9-3169-4d71-aa74-a96f6596733e",
+              "name": "Appointment reason created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateAppointmentReason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentReason>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <ReasonName>Annual Physical</ReasonName>\n    <Duration>30</Duration>\n  </AppointmentReason>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <AppointmentReasonId>(integer)</AppointmentReasonId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "087287ad-25ea-40d7-add5-b33a9597cff3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "CreateAppointmentReason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <AppointmentReason>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <ReasonName>Annual Physical</ReasonName>\n    <Duration>30</Duration>\n  </AppointmentReason>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a29d5f1-e61d-4fce-ab23-850178db32f8",
+          "name": "Retrieve appointment reasons",
+          "request": {
+            "name": "Retrieve appointment reasons",
+            "description": {
+              "content": "Retrieves the list of configured appointment reason codes for the practice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetAppointmentReasons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6140cc89-b427-443b-800d-1e92d949b24b",
+              "name": "Appointment reasons retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointmentReasons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <AppointmentReasons>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <ReasonName>Annual Physical</ReasonName>\n    <Duration>30</Duration>\n  </AppointmentReasons>\n  <AppointmentReasons>\n    <AppointmentReasonId>(integer)</AppointmentReasonId>\n    <ReasonName>Annual Physical</ReasonName>\n    <Duration>30</Duration>\n  </AppointmentReasons>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "7bb32065-7c1a-40d0-85b4-6b0b39046f9f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetAppointmentReasons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webservice.kareo.com/services/soap/2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "37470566-1b9f-4770-810d-5f0106993abe",
+    "name": "Kareo Integration SOAP Administrative Appointments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.\n\nContact Support:\n Name: Kareo / Tebra Support",
+      "type": "text/plain"
+    }
+  }
+}

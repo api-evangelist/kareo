@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Administrative",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register an external vendor integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/RegisterExternalVendor"
+          },
+          "docs": "Registers a third-party vendor or integration application with the Kareo platform to receive a CustomerKey for API access."
+        },
+        {
+          "info": {
+            "name": "Retrieve registered external vendors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetExternalVendors"
+          },
+          "docs": "Retrieves the list of external vendor integrations registered with the practice."
+        },
+        {
+          "info": {
+            "name": "Retrieve API throttle limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetThrottles"
+          },
+          "docs": "Returns the current API request throttle limits and usage for the authenticated practice to support rate-limit-aware integrations."
+        },
+        {
+          "info": {
+            "name": "Resolve customer identifier from CustomerKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetCustomerIdFromKey"
+          },
+          "docs": "Resolves the internal customer/practice identifier corresponding to a given CustomerKey credential."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

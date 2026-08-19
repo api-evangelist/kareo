@@ -1,0 +1,556 @@
+{
+  "item": [
+    {
+      "id": "60c8f3b0-3e45-44e5-80e4-b51e777e4cda",
+      "name": "Administrative",
+      "description": {
+        "content": "Vendor registration, throttles, and configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "829d122b-93bb-4970-9f2d-7d9862b3aa8e",
+          "name": "Register an external vendor integration",
+          "request": {
+            "name": "Register an external vendor integration",
+            "description": {
+              "content": "Registers a third-party vendor or integration application with the Kareo platform to receive a CustomerKey for API access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "RegisterExternalVendor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <VendorName>(string)</VendorName>\n  <VendorEmail>(string)</VendorEmail>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c24a038a-b0ce-4a0a-90b9-983cb1f83f67",
+              "name": "External vendor registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "RegisterExternalVendor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <VendorName>(string)</VendorName>\n  <VendorEmail>(string)</VendorEmail>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <VendorId>(integer)</VendorId>\n  <CustomerKey>(string)</CustomerKey>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "7dbc8f02-901a-4dff-8cbb-f368769e12ef",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "RegisterExternalVendor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <VendorName>(string)</VendorName>\n  <VendorEmail>(string)</VendorEmail>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa2ba1d9-099a-43f4-a690-da16d36890bd",
+          "name": "Retrieve registered external vendors",
+          "request": {
+            "name": "Retrieve registered external vendors",
+            "description": {
+              "content": "Retrieves the list of external vendor integrations registered with the practice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetExternalVendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b94398c2-eeb5-4043-bf6a-fb920d1261cc",
+              "name": "External vendors retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetExternalVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ExternalVendors>\n    <VendorId>(integer)</VendorId>\n    <VendorName>(string)</VendorName>\n    <CustomerKey>(string)</CustomerKey>\n    <IsActive>(boolean)</IsActive>\n  </ExternalVendors>\n  <ExternalVendors>\n    <VendorId>(integer)</VendorId>\n    <VendorName>(string)</VendorName>\n    <CustomerKey>(string)</CustomerKey>\n    <IsActive>(boolean)</IsActive>\n  </ExternalVendors>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "0cc95fa8-4ed4-4a32-a3b5-23e518d241ea",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetExternalVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "382c90b1-3370-4d38-b2c8-d3b9b9796a61",
+          "name": "Retrieve API throttle limits",
+          "request": {
+            "name": "Retrieve API throttle limits",
+            "description": {
+              "content": "Returns the current API request throttle limits and usage for the authenticated practice to support rate-limit-aware integrations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetThrottles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5367f68d-e355-44cf-9ac2-e35a268a9fea",
+              "name": "Throttle limits retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetThrottles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <ThrottleLimits>\n    <OperationName>(string)</OperationName>\n    <RequestsPerHour>(integer)</RequestsPerHour>\n    <CurrentUsage>(integer)</CurrentUsage>\n  </ThrottleLimits>\n  <ThrottleLimits>\n    <OperationName>(string)</OperationName>\n    <RequestsPerHour>(integer)</RequestsPerHour>\n    <CurrentUsage>(integer)</CurrentUsage>\n  </ThrottleLimits>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "24e7d8a8-35ab-4d9b-9418-36b23574a8ad",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetThrottles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e3f07bc-c69c-4530-8de0-ce8885b01a94",
+          "name": "Resolve customer identifier from CustomerKey",
+          "request": {
+            "name": "Resolve customer identifier from CustomerKey",
+            "description": {
+              "content": "Resolves the internal customer/practice identifier corresponding to a given CustomerKey credential.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "KareoServices.svc",
+                "GetCustomerIdFromKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>(string)</CustomerKey>\n    <User>(string)</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <CustomerKey>(string)</CustomerKey>\n</element>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0589a2ca-fe9a-4dd4-a5bb-e5baeba5460a",
+              "name": "Customer ID retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetCustomerIdFromKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <CustomerKey>(string)</CustomerKey>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <CustomerId>(integer)</CustomerId>\n  <ErrorCode>(string)</ErrorCode>\n  <ErrorMessage>(string)</ErrorMessage>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "97a6f973-ddcf-4c29-a4e6-1c6feb6e9662",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "KareoServices.svc",
+                    "GetCustomerIdFromKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <RequestHeader>\n    <CustomerKey>ABC123XYZ</CustomerKey>\n    <User>admin@mypractice.com</User>\n    <Password>(string)</Password>\n  </RequestHeader>\n  <CustomerKey>(string)</CustomerKey>\n</element>",
+                  "options": {
+                    "raw": {
+                      "language": "xml"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webservice.kareo.com/services/soap/2.1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "90ea5c52-5baa-4977-a4ed-83d2c20096fb",
+    "name": "Kareo Integration SOAP Administrative API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.\n\nContact Support:\n Name: Kareo / Tebra Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative Providers API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve provider records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetProviders"
+          },
+          "docs": "Retrieves the list of healthcare providers configured in the practice."
+        },
+        {
+          "info": {
+            "name": "Retrieve practice records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetPractices"
+          },
+          "docs": "Retrieves practice information for the authenticated account, including name, address, and NPI."
+        },
+        {
+          "info": {
+            "name": "Retrieve service locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetServiceLocations"
+          },
+          "docs": "Retrieves the list of service locations (offices, facilities) configured for the practice."
+        },
+        {
+          "info": {
+            "name": "Retrieve procedure codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetProcedureCodes"
+          },
+          "docs": "Retrieves the CPT/procedure code list configured for the practice for use in encounter and charge creation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

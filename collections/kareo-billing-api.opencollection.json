@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kareo Integration SOAP Administrative Billing API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/CreatePayment"
+          },
+          "docs": "Posts a patient or insurance payment to a patient account or specific charge in Kareo."
+        },
+        {
+          "info": {
+            "name": "Retrieve payment records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetPayments"
+          },
+          "docs": "Retrieves payment records with optional date range and patient filters."
+        },
+        {
+          "info": {
+            "name": "Retrieve charge records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetCharges"
+          },
+          "docs": "Retrieves medical charge records (CPT/procedure codes billed) with optional filtering by date range and patient."
+        },
+        {
+          "info": {
+            "name": "Retrieve financial transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webservice.kareo.com/services/soap/2.1/KareoServices.svc/GetTransactions"
+          },
+          "docs": "Retrieves financial transaction records for the practice, including charges, payments, and adjustments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
