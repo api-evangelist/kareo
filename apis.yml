@@ -8,6 +8,18 @@ description: >-
   API enables developers to build programs that access practice management
   data and functionality through authenticated XML-based SOAP requests.
   The platform also exposes a Clinical Open API for EHR data access.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
