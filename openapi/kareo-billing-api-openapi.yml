@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Kareo Integration SOAP Administrative Billing API
-  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  title: Kareo Integration SOAP Billing API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data.
   version: '2.1'
   contact:
     name: Kareo / Tebra Support
@@ -106,30 +106,17 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    GetChargesResponse:
+    GetPaymentsResponse:
       type: object
       properties:
-        Charges:
+        Payments:
           type: array
           items:
-            $ref: '#/components/schemas/Charge'
+            $ref: '#/components/schemas/Payment'
         ErrorCode:
           type: string
         ErrorMessage:
           type: string
-    GetPaymentsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        StartDate:
-          type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
-        PatientId:
-          type: integer
     GetTransactionsRequest:
       type: object
       properties:
@@ -141,6 +128,43 @@ components:
         EndDate:
           type: string
           format: date-time
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    GetChargesResponse:
+      type: object
+      properties:
+        Charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreatePaymentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Payment:
+          $ref: '#/components/schemas/Payment'
     GetTransactionsResponse:
       type: object
       properties:
@@ -165,15 +189,19 @@ components:
           type: string
         ErrorMessage:
           type: string
-    CreatePaymentResponse:
+    GetPaymentsRequest:
       type: object
       properties:
-        PaymentId:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
           type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     GetChargesRequest:
       type: object
       properties:
@@ -187,6 +215,15 @@ components:
           format: date-time
         PatientId:
           type: integer
+    CreatePaymentResponse:
+      type: object
+      properties:
+        PaymentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     Payment:
       type: object
       properties:
@@ -239,43 +276,6 @@ components:
         PatientBalance:
           type: number
           format: float
-    CreatePaymentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Payment:
-          $ref: '#/components/schemas/Payment'
-    GetPaymentsResponse:
-      type: object
-      properties:
-        Payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    RequestHeader:
-      type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
-      properties:
-        CustomerKey:
-          type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
-          type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
-          type: string
-          format: password
-          description: Kareo password for authentication.
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

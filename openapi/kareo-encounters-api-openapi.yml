@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Kareo Integration SOAP Administrative Encounters API
-  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data. This OpenAPI description is derived from the publicly accessible WSDL at https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl. The underlying service is SOAP/XML-based; this document describes the logical operations and data shapes for reference and tooling purposes. Authentication requires a CustomerKey, Username, and Password issued by a Kareo System Administrator. Kareo is now part of Tebra.
+  title: Kareo Integration SOAP Encounters API
+  description: The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with Kareo practice management data.
   version: '2.1'
   contact:
     name: Kareo / Tebra Support
@@ -156,71 +156,6 @@ paths:
           description: Document not found
 components:
   schemas:
-    DeleteDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        DocumentId:
-          type: integer
-    CreateDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        EncounterId:
-          type: integer
-        DocumentName:
-          type: string
-        DocumentContent:
-          type: string
-          format: byte
-          description: Base64-encoded document content.
-        DocumentType:
-          type: string
-    GetEncounterDetailsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-    CreateEncounterRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-    UpdatePrimaryPatientCaseResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetEncounterDetailsResponse:
-      type: object
-      properties:
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdateEncounterStatusResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     UpdateEncounterStatusRequest:
       type: object
       properties:
@@ -230,15 +165,6 @@ components:
           type: integer
         EncounterStatus:
           type: string
-    CreateDocumentResponse:
-      type: object
-      properties:
-        DocumentId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     CreateEncounterResponse:
       type: object
       properties:
@@ -247,17 +173,6 @@ components:
         ErrorCode:
           type: string
         ErrorMessage:
-          type: string
-    UpdatePrimaryPatientCaseRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        InsurancePolicyId:
-          type: integer
-        InsurancePolicyExternalId:
           type: string
     Encounter:
       type: object
@@ -297,15 +212,6 @@ components:
           description: CPT procedure codes billed in the encounter.
           example:
           - '99213'
-    DeleteDocumentResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     RequestHeader:
       type: object
       required:
@@ -325,6 +231,100 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
+    UpdatePrimaryPatientCaseRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
+    CreateDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        EncounterId:
+          type: integer
+        DocumentName:
+          type: string
+        DocumentContent:
+          type: string
+          format: byte
+          description: Base64-encoded document content.
+        DocumentType:
+          type: string
+    UpdateEncounterStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    DeleteDocumentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetEncounterDetailsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        EncounterId:
+          type: integer
+    DeleteDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        DocumentId:
+          type: integer
+    GetEncounterDetailsResponse:
+      type: object
+      properties:
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePrimaryPatientCaseResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    CreateDocumentResponse:
+      type: object
+      properties:
+        DocumentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

@@ -1,0 +1,27 @@
+# Front Door AI Index — kareo — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: kareo
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.kareo.com
+  final_host: www.tebra.com
+  ownership: inherited
+  owner: kareo
+  shares_host_with: null
+  inherited_from: www.tebra.com
+  verdict: scored
+  score: null
+  host_score: 9
+  density: null
+  words: 1712
+  tiers:
+    agentic: 0
+    core: 9
+    model: 0
+  ambiguous: 8
+  top_terms:
+    AI: 9
+    smart: 6
+    automation: 2

@@ -1,12 +1,7 @@
 {
   "provider": "kareo",
   "sources": [
-    "kareo-administrative-api-openapi.yml",
-    "kareo-appointments-api-openapi.yml",
-    "kareo-billing-api-openapi.yml",
-    "kareo-encounters-api-openapi.yml",
-    "kareo-patients-api-openapi.yml",
-    "kareo-providers-api-openapi.yml"
+    "_original/kareo-soap-api-openapi.yml"
   ],
   "outputs": [
     "kareo-administrative-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kareo-soap-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "kareo-administrative-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kareo-appointments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kareo-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kareo-encounters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kareo-patients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kareo-providers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
