@@ -156,37 +156,6 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    GetPatientsResponse:
-      type: object
-      properties:
-        Patients:
-          type: array
-          items:
-            $ref: '#/components/schemas/Patient'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetPatientsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        LastModifiedStartDate:
-          type: string
-          format: date-time
-        LastModifiedEndDate:
-          type: string
-          format: date-time
-    CreatePatientResponse:
-      type: object
-      properties:
-        PatientId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     UpdatePatientsExternalIDRequest:
       type: object
       properties:
@@ -220,6 +189,46 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
+    GetPatientsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        LastModifiedStartDate:
+          type: string
+          format: date-time
+        LastModifiedEndDate:
+          type: string
+          format: date-time
+    CreatePatientResponse:
+      type: object
+      properties:
+        PatientId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePatientsExternalIDResponse:
+      type: object
+      properties:
+        UpdatedCount:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetPatientsResponse:
+      type: object
+      properties:
+        Patients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Patient'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     UpdatePatientResponse:
       type: object
       properties:
@@ -228,6 +237,15 @@ components:
         ErrorCode:
           type: string
         ErrorMessage:
+          type: string
+    GetPatientRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        PatientExternalId:
           type: string
     CreatePatientRequest:
       type: object
@@ -257,15 +275,6 @@ components:
         Country:
           type: string
           example: US
-    UpdatePatientsExternalIDResponse:
-      type: object
-      properties:
-        UpdatedCount:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     GetPatientResponse:
       type: object
       properties:
@@ -275,22 +284,6 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetPatientRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        PatientExternalId:
-          type: string
-    UpdatePatientRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Patient:
-          $ref: '#/components/schemas/Patient'
     GetAllPatientsRequest:
       type: object
       properties:
@@ -350,6 +343,13 @@ components:
           type: string
           format: date-time
           description: Timestamp of the last modification to the record.
+    UpdatePatientRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Patient:
+          $ref: '#/components/schemas/Patient'
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

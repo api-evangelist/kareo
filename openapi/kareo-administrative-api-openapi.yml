@@ -106,6 +106,20 @@ paths:
           description: Authentication failed
 components:
   schemas:
+    GetCustomerIdFromKeyResponse:
+      type: object
+      properties:
+        CustomerId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetExternalVendorsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
     RequestHeader:
       type: object
       required:
@@ -143,6 +157,11 @@ components:
           $ref: '#/components/schemas/RequestHeader'
         CustomerKey:
           type: string
+    GetThrottlesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
     RegisterExternalVendorRequest:
       type: object
       properties:
@@ -153,39 +172,6 @@ components:
         VendorEmail:
           type: string
           format: email
-    GetExternalVendorsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    ThrottleLimit:
-      type: object
-      properties:
-        OperationName:
-          type: string
-          description: Name of the API operation subject to throttling.
-        RequestsPerHour:
-          type: integer
-          description: Maximum allowed requests per hour for this operation.
-        CurrentUsage:
-          type: integer
-          description: Current request count in the rolling window.
-    GetExternalVendorsResponse:
-      type: object
-      properties:
-        ExternalVendors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalVendor'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetThrottlesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     ExternalVendor:
       type: object
       properties:
@@ -208,11 +194,25 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetCustomerIdFromKeyResponse:
+    ThrottleLimit:
       type: object
       properties:
-        CustomerId:
+        OperationName:
+          type: string
+          description: Name of the API operation subject to throttling.
+        RequestsPerHour:
           type: integer
+          description: Maximum allowed requests per hour for this operation.
+        CurrentUsage:
+          type: integer
+          description: Current request count in the rolling window.
+    GetExternalVendorsResponse:
+      type: object
+      properties:
+        ExternalVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalVendor'
         ErrorCode:
           type: string
         ErrorMessage:

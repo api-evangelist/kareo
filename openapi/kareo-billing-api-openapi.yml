@@ -106,28 +106,6 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    GetPaymentsResponse:
-      type: object
-      properties:
-        Payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetTransactionsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        StartDate:
-          type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
     RequestHeader:
       type: object
       required:
@@ -147,83 +125,6 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
-    GetChargesResponse:
-      type: object
-      properties:
-        Charges:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    CreatePaymentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Payment:
-          $ref: '#/components/schemas/Payment'
-    GetTransactionsResponse:
-      type: object
-      properties:
-        Transactions:
-          type: array
-          items:
-            type: object
-            properties:
-              TransactionId:
-                type: integer
-              TransactionDate:
-                type: string
-                format: date
-              TransactionType:
-                type: string
-              Amount:
-                type: number
-                format: float
-              PatientId:
-                type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetPaymentsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        StartDate:
-          type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
-        PatientId:
-          type: integer
-    GetChargesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        StartDate:
-          type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
-        PatientId:
-          type: integer
-    CreatePaymentResponse:
-      type: object
-      properties:
-        PaymentId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     Payment:
       type: object
       properties:
@@ -247,6 +148,37 @@ components:
         CheckNumber:
           type: string
         Notes:
+          type: string
+    GetChargesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
+          type: integer
+    CreatePaymentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Payment:
+          $ref: '#/components/schemas/Payment'
+    GetChargesResponse:
+      type: object
+      properties:
+        Charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        ErrorCode:
+          type: string
+        ErrorMessage:
           type: string
     Charge:
       type: object
@@ -276,6 +208,74 @@ components:
         PatientBalance:
           type: number
           format: float
+    GetPaymentsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
+          type: integer
+    GetPaymentsResponse:
+      type: object
+      properties:
+        Payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetTransactionsResponse:
+      type: object
+      properties:
+        Transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              TransactionId:
+                type: integer
+              TransactionDate:
+                type: string
+                format: date
+              TransactionType:
+                type: string
+              Amount:
+                type: number
+                format: float
+              PatientId:
+                type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreatePaymentResponse:
+      type: object
+      properties:
+        PaymentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetTransactionsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

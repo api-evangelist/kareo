@@ -156,24 +156,6 @@ paths:
           description: Document not found
 components:
   schemas:
-    UpdateEncounterStatusRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-        EncounterStatus:
-          type: string
-    CreateEncounterResponse:
-      type: object
-      properties:
-        EncounterId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     Encounter:
       type: object
       properties:
@@ -212,6 +194,31 @@ components:
           description: CPT procedure codes billed in the encounter.
           example:
           - '99213'
+    UpdateEncounterStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    CreateEncounterResponse:
+      type: object
+      properties:
+        EncounterId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     RequestHeader:
       type: object
       required:
@@ -231,39 +238,11 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
-    UpdatePrimaryPatientCaseRequest:
+    CreateDocumentResponse:
       type: object
       properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
+        DocumentId:
           type: integer
-        InsurancePolicyId:
-          type: integer
-        InsurancePolicyExternalId:
-          type: string
-    CreateDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        EncounterId:
-          type: integer
-        DocumentName:
-          type: string
-        DocumentContent:
-          type: string
-          format: byte
-          description: Base64-encoded document content.
-        DocumentType:
-          type: string
-    UpdateEncounterStatusResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
         ErrorCode:
           type: string
         ErrorMessage:
@@ -291,6 +270,34 @@ components:
           $ref: '#/components/schemas/RequestHeader'
         DocumentId:
           type: integer
+    CreateDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        EncounterId:
+          type: integer
+        DocumentName:
+          type: string
+        DocumentContent:
+          type: string
+          format: byte
+          description: Base64-encoded document content.
+        DocumentType:
+          type: string
+    UpdatePrimaryPatientCaseRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
     GetEncounterDetailsResponse:
       type: object
       properties:
@@ -309,21 +316,14 @@ components:
           type: string
         ErrorMessage:
           type: string
-    CreateEncounterRequest:
+    UpdateEncounterStatusRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-    CreateDocumentResponse:
-      type: object
-      properties:
-        DocumentId:
+        EncounterId:
           type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
+        EncounterStatus:
           type: string
 externalDocs:
   description: Kareo API and Integration Documentation
