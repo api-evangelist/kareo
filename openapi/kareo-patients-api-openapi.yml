@@ -156,68 +156,13 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    UpdatePatientsExternalIDRequest:
+    CreatePatientRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
-        PatientExternalIdMappings:
-          type: array
-          items:
-            type: object
-            properties:
-              PatientId:
-                type: integer
-              ExternalId:
-                type: string
-    RequestHeader:
-      type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
-      properties:
-        CustomerKey:
-          type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
-          type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
-          type: string
-          format: password
-          description: Kareo password for authentication.
-    GetPatientsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        LastModifiedStartDate:
-          type: string
-          format: date-time
-        LastModifiedEndDate:
-          type: string
-          format: date-time
-    CreatePatientResponse:
-      type: object
-      properties:
-        PatientId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdatePatientsExternalIDResponse:
-      type: object
-      properties:
-        UpdatedCount:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
+        Patient:
+          $ref: '#/components/schemas/Patient'
     GetPatientsResponse:
       type: object
       properties:
@@ -229,15 +174,17 @@ components:
           type: string
         ErrorMessage:
           type: string
-    UpdatePatientResponse:
+    GetPatientsRequest:
       type: object
       properties:
-        Success:
-          type: boolean
-        ErrorCode:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        LastModifiedStartDate:
           type: string
-        ErrorMessage:
+          format: date-time
+        LastModifiedEndDate:
           type: string
+          format: date-time
     GetPatientRequest:
       type: object
       properties:
@@ -247,48 +194,31 @@ components:
           type: integer
         PatientExternalId:
           type: string
-    CreatePatientRequest:
+    UpdatePatientRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
         Patient:
           $ref: '#/components/schemas/Patient'
-    Address:
+    UpdatePatientResponse:
       type: object
       properties:
-        Address1:
-          type: string
-          example: 123 Main St
-        Address2:
-          type: string
-          example: Suite 100
-        City:
-          type: string
-          example: Los Angeles
-        State:
-          type: string
-          example: CA
-        ZipCode:
-          type: string
-          example: '90001'
-        Country:
-          type: string
-          example: US
-    GetPatientResponse:
-      type: object
-      properties:
-        Patient:
-          $ref: '#/components/schemas/Patient'
+        Success:
+          type: boolean
         ErrorCode:
           type: string
         ErrorMessage:
           type: string
-    GetAllPatientsRequest:
+    CreatePatientResponse:
       type: object
       properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     Patient:
       type: object
       properties:
@@ -343,13 +273,83 @@ components:
           type: string
           format: date-time
           description: Timestamp of the last modification to the record.
-    UpdatePatientRequest:
+    GetAllPatientsRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
+    Address:
+      type: object
+      properties:
+        Address1:
+          type: string
+          example: 123 Main St
+        Address2:
+          type: string
+          example: Suite 100
+        City:
+          type: string
+          example: Los Angeles
+        State:
+          type: string
+          example: CA
+        ZipCode:
+          type: string
+          example: '90001'
+        Country:
+          type: string
+          example: US
+    GetPatientResponse:
+      type: object
+      properties:
         Patient:
           $ref: '#/components/schemas/Patient'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePatientsExternalIDResponse:
+      type: object
+      properties:
+        UpdatedCount:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePatientsExternalIDRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientExternalIdMappings:
+          type: array
+          items:
+            type: object
+            properties:
+              PatientId:
+                type: integer
+              ExternalId:
+                type: string
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

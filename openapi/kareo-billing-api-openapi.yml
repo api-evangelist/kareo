@@ -106,25 +106,6 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    RequestHeader:
-      type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
-      properties:
-        CustomerKey:
-          type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
-          type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
-          type: string
-          format: password
-          description: Kareo password for authentication.
     Payment:
       type: object
       properties:
@@ -149,7 +130,7 @@ components:
           type: string
         Notes:
           type: string
-    GetChargesRequest:
+    GetTransactionsRequest:
       type: object
       properties:
         RequestHeader:
@@ -160,8 +141,30 @@ components:
         EndDate:
           type: string
           format: date-time
-        PatientId:
-          type: integer
+    GetTransactionsResponse:
+      type: object
+      properties:
+        Transactions:
+          type: array
+          items:
+            type: object
+            properties:
+              TransactionId:
+                type: integer
+              TransactionDate:
+                type: string
+                format: date
+              TransactionType:
+                type: string
+              Amount:
+                type: number
+                format: float
+              PatientId:
+                type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     CreatePaymentRequest:
       type: object
       properties:
@@ -169,17 +172,6 @@ components:
           $ref: '#/components/schemas/RequestHeader'
         Payment:
           $ref: '#/components/schemas/Payment'
-    GetChargesResponse:
-      type: object
-      properties:
-        Charges:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     Charge:
       type: object
       properties:
@@ -208,6 +200,28 @@ components:
         PatientBalance:
           type: number
           format: float
+    GetChargesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        StartDate:
+          type: string
+          format: date-time
+        EndDate:
+          type: string
+          format: date-time
+        PatientId:
+          type: integer
+    CreatePaymentResponse:
+      type: object
+      properties:
+        PaymentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     GetPaymentsRequest:
       type: object
       properties:
@@ -232,50 +246,36 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetTransactionsResponse:
+    GetChargesResponse:
       type: object
       properties:
-        Transactions:
+        Charges:
           type: array
           items:
-            type: object
-            properties:
-              TransactionId:
-                type: integer
-              TransactionDate:
-                type: string
-                format: date
-              TransactionType:
-                type: string
-              Amount:
-                type: number
-                format: float
-              PatientId:
-                type: integer
+            $ref: '#/components/schemas/Charge'
         ErrorCode:
           type: string
         ErrorMessage:
           type: string
-    CreatePaymentResponse:
+    RequestHeader:
       type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
       properties:
-        PaymentId:
-          type: integer
-        ErrorCode:
+        CustomerKey:
           type: string
-        ErrorMessage:
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
           type: string
-    GetTransactionsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        StartDate:
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
           type: string
-          format: date-time
-        EndDate:
-          type: string
-          format: date-time
+          format: password
+          description: Kareo password for authentication.
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

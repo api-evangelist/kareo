@@ -106,6 +106,27 @@ paths:
           description: Authentication failed
 components:
   schemas:
+    GetPracticesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetServiceLocationsResponse:
+      type: object
+      properties:
+        ServiceLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLocation'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetProcedureCodesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
     Practice:
       type: object
       properties:
@@ -121,46 +142,6 @@ components:
           type: string
         TaxId:
           type: string
-    RequestHeader:
-      type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
-      properties:
-        CustomerKey:
-          type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
-          type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
-          type: string
-          format: password
-          description: Kareo password for authentication.
-    GetPracticesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetProcedureCodesResponse:
-      type: object
-      properties:
-        ProcedureCodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcedureCode'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetProvidersRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     Provider:
       type: object
       properties:
@@ -178,12 +159,7 @@ components:
           type: string
         IsActive:
           type: boolean
-    GetProcedureCodesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetServiceLocationsRequest:
+    GetProvidersRequest:
       type: object
       properties:
         RequestHeader:
@@ -209,6 +185,17 @@ components:
         Country:
           type: string
           example: US
+    GetProcedureCodesResponse:
+      type: object
+      properties:
+        ProcedureCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcedureCode'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     GetProvidersResponse:
       type: object
       properties:
@@ -220,17 +207,21 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetServiceLocationsResponse:
+    ProcedureCode:
       type: object
       properties:
-        ServiceLocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceLocation'
-        ErrorCode:
+        ProcedureCodeId:
+          type: integer
+        Code:
           type: string
-        ErrorMessage:
+          example: '99213'
+        Description:
           type: string
+          example: Office visit, established patient, moderate complexity
+        DefaultFee:
+          type: number
+          format: float
+          example: 150.0
     ServiceLocation:
       type: object
       properties:
@@ -256,21 +247,30 @@ components:
           type: string
         ErrorMessage:
           type: string
-    ProcedureCode:
+    GetServiceLocationsRequest:
       type: object
       properties:
-        ProcedureCodeId:
-          type: integer
-        Code:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
           type: string
-          example: '99213'
-        Description:
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
           type: string
-          example: Office visit, established patient, moderate complexity
-        DefaultFee:
-          type: number
-          format: float
-          example: 150.0
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

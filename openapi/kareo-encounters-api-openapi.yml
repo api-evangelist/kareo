@@ -156,6 +156,109 @@ paths:
           description: Document not found
 components:
   schemas:
+    DeleteDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        DocumentId:
+          type: integer
+    GetEncounterDetailsResponse:
+      type: object
+      properties:
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePrimaryPatientCaseRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
+    GetEncounterDetailsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        EncounterId:
+          type: integer
+    UpdatePrimaryPatientCaseResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateEncounterStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateDocumentResponse:
+      type: object
+      properties:
+        DocumentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        EncounterId:
+          type: integer
+        DocumentName:
+          type: string
+        DocumentContent:
+          type: string
+          format: byte
+          description: Base64-encoded document content.
+        DocumentType:
+          type: string
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    CreateEncounterResponse:
+      type: object
+      properties:
+        EncounterId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    DeleteDocumentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     Encounter:
       type: object
       properties:
@@ -194,30 +297,14 @@ components:
           description: CPT procedure codes billed in the encounter.
           example:
           - '99213'
-    UpdateEncounterStatusResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    CreateEncounterRequest:
+    UpdateEncounterStatusRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-    CreateEncounterResponse:
-      type: object
-      properties:
         EncounterId:
           type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
+        EncounterStatus:
           type: string
     RequestHeader:
       type: object
@@ -238,93 +325,6 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
-    CreateDocumentResponse:
-      type: object
-      properties:
-        DocumentId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    DeleteDocumentResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetEncounterDetailsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-    DeleteDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        DocumentId:
-          type: integer
-    CreateDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        EncounterId:
-          type: integer
-        DocumentName:
-          type: string
-        DocumentContent:
-          type: string
-          format: byte
-          description: Base64-encoded document content.
-        DocumentType:
-          type: string
-    UpdatePrimaryPatientCaseRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        InsurancePolicyId:
-          type: integer
-        InsurancePolicyExternalId:
-          type: string
-    GetEncounterDetailsResponse:
-      type: object
-      properties:
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdatePrimaryPatientCaseResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdateEncounterStatusRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-        EncounterStatus:
-          type: string
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
