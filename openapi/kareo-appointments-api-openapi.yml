@@ -211,31 +211,32 @@ components:
           $ref: '#/components/schemas/RequestHeader'
         AppointmentReason:
           $ref: '#/components/schemas/AppointmentReason'
-    UpdateAppointmentStatusRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        AppointmentId:
-          type: integer
-        AppointmentStatus:
-          type: string
-    GetAppointmentsResponse:
-      type: object
-      properties:
-        Appointments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Appointment'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    CreateAppointmentReasonResponse:
+    AppointmentReason:
       type: object
       properties:
         AppointmentReasonId:
           type: integer
+        ReasonName:
+          type: string
+          example: Annual Physical
+        Duration:
+          type: integer
+          description: Default duration in minutes.
+          example: 30
+    UpdateAppointmentStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateAppointmentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
         ErrorCode:
           type: string
         ErrorMessage:
@@ -249,50 +250,20 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetAppointmentResponse:
-      type: object
-      properties:
-        Appointment:
-          $ref: '#/components/schemas/Appointment'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    AppointmentReason:
-      type: object
-      properties:
-        AppointmentReasonId:
-          type: integer
-        ReasonName:
-          type: string
-          example: Annual Physical
-        Duration:
-          type: integer
-          description: Default duration in minutes.
-          example: 30
-    UpdateAppointmentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Appointment:
-          $ref: '#/components/schemas/Appointment'
-    UpdateAppointmentResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetAppointmentRequest:
+    DeleteAppointmentRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
         AppointmentId:
           type: integer
+    CreateAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
     Appointment:
       type: object
       properties:
@@ -334,27 +305,11 @@ components:
         Notes:
           type: string
           description: Free-text notes for the appointment.
-    GetAppointmentReasonsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    UpdateAppointmentStatusResponse:
+    DeleteAppointmentResponse:
       type: object
       properties:
         Success:
           type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetAppointmentReasonsResponse:
-      type: object
-      properties:
-        AppointmentReasons:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppointmentReason'
         ErrorCode:
           type: string
         ErrorMessage:
@@ -378,6 +333,74 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
+    CreateAppointmentReasonResponse:
+      type: object
+      properties:
+        AppointmentReasonId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateAppointmentStatusRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentId:
+          type: integer
+        AppointmentStatus:
+          type: string
+    GetAppointmentResponse:
+      type: object
+      properties:
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Appointment:
+          $ref: '#/components/schemas/Appointment'
+    GetAppointmentReasonsResponse:
+      type: object
+      properties:
+        AppointmentReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppointmentReason'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetAppointmentReasonsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetAppointmentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        AppointmentId:
+          type: integer
+    GetAppointmentsResponse:
+      type: object
+      properties:
+        Appointments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Appointment'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     GetAppointmentsRequest:
       type: object
       properties:
@@ -395,29 +418,6 @@ components:
           type: integer
         AppointmentStatus:
           type: string
-    DeleteAppointmentResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    DeleteAppointmentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        AppointmentId:
-          type: integer
-    CreateAppointmentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Appointment:
-          $ref: '#/components/schemas/Appointment'
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

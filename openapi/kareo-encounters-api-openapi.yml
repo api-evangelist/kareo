@@ -156,49 +156,6 @@ paths:
           description: Document not found
 components:
   schemas:
-    DeleteDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        DocumentId:
-          type: integer
-    GetEncounterDetailsResponse:
-      type: object
-      properties:
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdatePrimaryPatientCaseRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        InsurancePolicyId:
-          type: integer
-        InsurancePolicyExternalId:
-          type: string
-    GetEncounterDetailsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-    UpdatePrimaryPatientCaseResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     UpdateEncounterStatusResponse:
       type: object
       properties:
@@ -208,11 +165,27 @@ components:
           type: string
         ErrorMessage:
           type: string
-    CreateDocumentResponse:
+    UpdatePrimaryPatientCaseResponse:
       type: object
       properties:
-        DocumentId:
-          type: integer
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    DeleteDocumentResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
         ErrorCode:
           type: string
         ErrorMessage:
@@ -234,31 +207,54 @@ components:
           description: Base64-encoded document content.
         DocumentType:
           type: string
-    CreateEncounterRequest:
+    UpdatePrimaryPatientCaseRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
+    GetEncounterDetailsResponse:
+      type: object
+      properties:
         Encounter:
           $ref: '#/components/schemas/Encounter'
-    CreateEncounterResponse:
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdateEncounterStatusRequest:
       type: object
       properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
         EncounterId:
           type: integer
-        ErrorCode:
+        EncounterStatus:
           type: string
-        ErrorMessage:
-          type: string
-    DeleteDocumentResponse:
+    RequestHeader:
       type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
       properties:
-        Success:
-          type: boolean
-        ErrorCode:
+        CustomerKey:
           type: string
-        ErrorMessage:
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
           type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
     Encounter:
       type: object
       properties:
@@ -297,34 +293,38 @@ components:
           description: CPT procedure codes billed in the encounter.
           example:
           - '99213'
-    UpdateEncounterStatusRequest:
+    DeleteDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        DocumentId:
+          type: integer
+    GetEncounterDetailsRequest:
       type: object
       properties:
         RequestHeader:
           $ref: '#/components/schemas/RequestHeader'
         EncounterId:
           type: integer
-        EncounterStatus:
-          type: string
-    RequestHeader:
+    CreateEncounterResponse:
       type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
       properties:
-        CustomerKey:
+        EncounterId:
+          type: integer
+        ErrorCode:
           type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
+        ErrorMessage:
           type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
+    CreateDocumentResponse:
+      type: object
+      properties:
+        DocumentId:
+          type: integer
+        ErrorCode:
           type: string
-          format: password
-          description: Kareo password for authentication.
+        ErrorMessage:
+          type: string
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

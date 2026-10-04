@@ -106,64 +106,40 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    GetPracticesRequest:
+    ProcedureCode:
       type: object
       properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetServiceLocationsResponse:
-      type: object
-      properties:
-        ServiceLocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceLocation'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetProcedureCodesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    Practice:
-      type: object
-      properties:
-        PracticeId:
+        ProcedureCodeId:
           type: integer
-        PracticeName:
+        Code:
           type: string
-        NPI:
+          example: '99213'
+        Description:
           type: string
+          example: Office visit, established patient, moderate complexity
+        DefaultFee:
+          type: number
+          format: float
+          example: 150.0
+    GetServiceLocationsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    ServiceLocation:
+      type: object
+      properties:
+        ServiceLocationId:
+          type: integer
+        LocationName:
+          type: string
+          example: Main Office
         Address:
           $ref: '#/components/schemas/Address'
         Phone:
           type: string
-        TaxId:
-          type: string
-    Provider:
-      type: object
-      properties:
-        ProviderId:
-          type: integer
-        FirstName:
-          type: string
-        LastName:
-          type: string
         NPI:
           type: string
-          description: National Provider Identifier (10-digit).
-          example: '1234567890'
-        Specialty:
-          type: string
-        IsActive:
-          type: boolean
-    GetProvidersRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     Address:
       type: object
       properties:
@@ -185,56 +161,21 @@ components:
         Country:
           type: string
           example: US
-    GetProcedureCodesResponse:
+    GetProcedureCodesRequest:
       type: object
       properties:
-        ProcedureCodes:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetServiceLocationsResponse:
+      type: object
+      properties:
+        ServiceLocations:
           type: array
           items:
-            $ref: '#/components/schemas/ProcedureCode'
+            $ref: '#/components/schemas/ServiceLocation'
         ErrorCode:
           type: string
         ErrorMessage:
-          type: string
-    GetProvidersResponse:
-      type: object
-      properties:
-        Providers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Provider'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    ProcedureCode:
-      type: object
-      properties:
-        ProcedureCodeId:
-          type: integer
-        Code:
-          type: string
-          example: '99213'
-        Description:
-          type: string
-          example: Office visit, established patient, moderate complexity
-        DefaultFee:
-          type: number
-          format: float
-          example: 150.0
-    ServiceLocation:
-      type: object
-      properties:
-        ServiceLocationId:
-          type: integer
-        LocationName:
-          type: string
-          example: Main Office
-        Address:
-          $ref: '#/components/schemas/Address'
-        Phone:
-          type: string
-        NPI:
           type: string
     GetPracticesResponse:
       type: object
@@ -247,11 +188,32 @@ components:
           type: string
         ErrorMessage:
           type: string
-    GetServiceLocationsRequest:
+    Practice:
       type: object
       properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
+        PracticeId:
+          type: integer
+        PracticeName:
+          type: string
+        NPI:
+          type: string
+        Address:
+          $ref: '#/components/schemas/Address'
+        Phone:
+          type: string
+        TaxId:
+          type: string
+    GetProcedureCodesResponse:
+      type: object
+      properties:
+        ProcedureCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcedureCode'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     RequestHeader:
       type: object
       required:
@@ -271,6 +233,44 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
+    GetPracticesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetProvidersRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    Provider:
+      type: object
+      properties:
+        ProviderId:
+          type: integer
+        FirstName:
+          type: string
+        LastName:
+          type: string
+        NPI:
+          type: string
+          description: National Provider Identifier (10-digit).
+          example: '1234567890'
+        Specialty:
+          type: string
+        IsActive:
+          type: boolean
+    GetProvidersResponse:
+      type: object
+      properties:
+        Providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
