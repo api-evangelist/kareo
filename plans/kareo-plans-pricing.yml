@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Kareo Plans and Pricing
 description: >-
   Kareo (now Tebra) offers quote-based pricing with no publicly listed per-API
@@ -66,3 +70,40 @@ notes:
   - Scaled pricing available for low-volume providers with 100 or fewer claims per month
   - EPCS setup costs approximately $75 per provider (one-time)
   - PDMP integration costs $500 one-time per facility plus approximately $50 per user per year
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Practice Automation (All-in-One)
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: EHR+
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Patient Experience + Marketing
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: EHR Starter
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Billing Starter
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []

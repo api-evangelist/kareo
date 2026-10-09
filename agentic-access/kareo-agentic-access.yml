@@ -1,21 +1,25 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/kareo-soap-api-openapi.yml
+source: openapi/kareo-administrative-api-openapi.yml, openapi/kareo-appointments-api-openapi.yml,
+  openapi/kareo-billing-api-openapi.yml, openapi/kareo-encounters-api-openapi.yml, openapi/kareo-patients-api-openapi.yml,
+  openapi/kareo-providers-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 32
   by_action_class:
-    acting: 32
+    acting: 15
+    connected: 17
   by_consequence:
-    write: 29
-    physical: 3
+    write: 14
+    read: 17
+    physical: 1
   human_in_the_loop_required: 0
 operations:
-- path: /KareoServices.svc/CreatePatient
+- path: /KareoServices.svc/RegisterExternalVendor
   method: post
-  operationId: createPatient
+  operationId: registerExternalVendor
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -29,86 +33,36 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /KareoServices.svc/UpdatePatient
+- path: /KareoServices.svc/GetExternalVendors
   method: post
-  operationId: updatePatient
+  operationId: getExternalVendors
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetPatient
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetThrottles
   method: post
-  operationId: getPatient
+  operationId: getThrottles
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetPatients
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetCustomerIdFromKey
   method: post
-  operationId: getPatients
+  operationId: getCustomerIdFromKey
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetAllPatients
-  method: post
-  operationId: getAllPatients
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/UpdatePatientsExternalID
-  method: post
-  operationId: updatePatientsExternalID
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/CreateAppointment
   method: post
   operationId: createAppointment
@@ -177,34 +131,22 @@ operations:
   method: post
   operationId: getAppointment
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/GetAppointments
   method: post
   operationId: getAppointments
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/CreateAppointmentReason
   method: post
   operationId: createAppointmentReason
@@ -225,18 +167,60 @@ operations:
   method: post
   operationId: getAppointmentReasons
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/CreatePayment
+  method: post
+  operationId: createPayment
+  x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
+- path: /KareoServices.svc/GetPayments
+  method: post
+  operationId: getPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetCharges
+  method: post
+  operationId: getCharges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetTransactions
+  method: post
+  operationId: getTransactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/CreateEncounter
   method: post
   operationId: createEncounter
@@ -273,18 +257,12 @@ operations:
   method: post
   operationId: getEncounterDetails
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/UpdatePrimaryPatientCase
   method: post
   operationId: updatePrimaryPatientCase
@@ -333,63 +311,71 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /KareoServices.svc/CreatePayment
+- path: /KareoServices.svc/CreatePatient
   method: post
-  operationId: createPayment
+  operationId: createPatient
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /KareoServices.svc/GetPayments
+- path: /KareoServices.svc/UpdatePatient
   method: post
-  operationId: getPayments
+  operationId: updatePatient
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /KareoServices.svc/GetCharges
+- path: /KareoServices.svc/GetPatient
   method: post
-  operationId: getCharges
+  operationId: getPatient
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetTransactions
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetPatients
   method: post
-  operationId: getTransactions
+  operationId: getPatients
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/GetAllPatients
+  method: post
+  operationId: getAllPatients
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /KareoServices.svc/UpdatePatientsExternalID
+  method: post
+  operationId: updatePatientsExternalID
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -407,127 +393,39 @@ operations:
   method: post
   operationId: getProviders
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/GetPractices
   method: post
   operationId: getPractices
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/GetServiceLocations
   method: post
   operationId: getServiceLocations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /KareoServices.svc/GetProcedureCodes
   method: post
   operationId: getProcedureCodes
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/RegisterExternalVendor
-  method: post
-  operationId: registerExternalVendor
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetExternalVendors
-  method: post
-  operationId: getExternalVendors
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetThrottles
-  method: post
-  operationId: getThrottles
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /KareoServices.svc/GetCustomerIdFromKey
-  method: post
-  operationId: getCustomerIdFromKey
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
