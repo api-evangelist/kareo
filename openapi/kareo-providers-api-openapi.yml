@@ -106,26 +106,36 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    ProcedureCode:
+    RequestHeader:
+      type: object
+      required:
+      - CustomerKey
+      - User
+      - Password
+      properties:
+        CustomerKey:
+          type: string
+          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
+          example: ABC123XYZ
+        User:
+          type: string
+          description: Kareo username for authentication.
+          example: admin@mypractice.com
+        Password:
+          type: string
+          format: password
+          description: Kareo password for authentication.
+    GetServiceLocationsResponse:
       type: object
       properties:
-        ProcedureCodeId:
-          type: integer
-        Code:
+        ServiceLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLocation'
+        ErrorCode:
           type: string
-          example: '99213'
-        Description:
+        ErrorMessage:
           type: string
-          example: Office visit, established patient, moderate complexity
-        DefaultFee:
-          type: number
-          format: float
-          example: 150.0
-    GetServiceLocationsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     ServiceLocation:
       type: object
       properties:
@@ -139,6 +149,48 @@ components:
         Phone:
           type: string
         NPI:
+          type: string
+    Practice:
+      type: object
+      properties:
+        PracticeId:
+          type: integer
+        PracticeName:
+          type: string
+        NPI:
+          type: string
+        Address:
+          $ref: '#/components/schemas/Address'
+        Phone:
+          type: string
+        TaxId:
+          type: string
+    GetProcedureCodesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetProvidersResponse:
+      type: object
+      properties:
+        Providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetProcedureCodesResponse:
+      type: object
+      properties:
+        ProcedureCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcedureCode'
+        ErrorCode:
+          type: string
+        ErrorMessage:
           type: string
     Address:
       type: object
@@ -161,88 +213,6 @@ components:
         Country:
           type: string
           example: US
-    GetProcedureCodesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetServiceLocationsResponse:
-      type: object
-      properties:
-        ServiceLocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceLocation'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetPracticesResponse:
-      type: object
-      properties:
-        Practices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Practice'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    Practice:
-      type: object
-      properties:
-        PracticeId:
-          type: integer
-        PracticeName:
-          type: string
-        NPI:
-          type: string
-        Address:
-          $ref: '#/components/schemas/Address'
-        Phone:
-          type: string
-        TaxId:
-          type: string
-    GetProcedureCodesResponse:
-      type: object
-      properties:
-        ProcedureCodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcedureCode'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    RequestHeader:
-      type: object
-      required:
-      - CustomerKey
-      - User
-      - Password
-      properties:
-        CustomerKey:
-          type: string
-          description: Unique key issued by the Kareo System Administrator identifying the practice integration.
-          example: ABC123XYZ
-        User:
-          type: string
-          description: Kareo username for authentication.
-          example: admin@mypractice.com
-        Password:
-          type: string
-          format: password
-          description: Kareo password for authentication.
-    GetPracticesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetProvidersRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     Provider:
       type: object
       properties:
@@ -260,17 +230,47 @@ components:
           type: string
         IsActive:
           type: boolean
-    GetProvidersResponse:
+    GetProvidersRequest:
       type: object
       properties:
-        Providers:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetPracticesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetPracticesResponse:
+      type: object
+      properties:
+        Practices:
           type: array
           items:
-            $ref: '#/components/schemas/Provider'
+            $ref: '#/components/schemas/Practice'
         ErrorCode:
           type: string
         ErrorMessage:
           type: string
+    ProcedureCode:
+      type: object
+      properties:
+        ProcedureCodeId:
+          type: integer
+        Code:
+          type: string
+          example: '99213'
+        Description:
+          type: string
+          example: Office visit, established patient, moderate complexity
+        DefaultFee:
+          type: number
+          format: float
+          example: 150.0
+    GetServiceLocationsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

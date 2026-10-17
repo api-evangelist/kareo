@@ -106,75 +106,6 @@ paths:
           description: Authentication failed
 components:
   schemas:
-    RegisterExternalVendorResponse:
-      type: object
-      properties:
-        VendorId:
-          type: integer
-        CustomerKey:
-          type: string
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetThrottlesResponse:
-      type: object
-      properties:
-        ThrottleLimits:
-          type: array
-          items:
-            $ref: '#/components/schemas/ThrottleLimit'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    RegisterExternalVendorRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        VendorName:
-          type: string
-        VendorEmail:
-          type: string
-          format: email
-    GetThrottlesRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-    GetCustomerIdFromKeyResponse:
-      type: object
-      properties:
-        CustomerId:
-          type: integer
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    GetCustomerIdFromKeyRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        CustomerKey:
-          type: string
-    ExternalVendor:
-      type: object
-      properties:
-        VendorId:
-          type: integer
-        VendorName:
-          type: string
-        CustomerKey:
-          type: string
-        IsActive:
-          type: boolean
-    GetExternalVendorsRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
     RequestHeader:
       type: object
       required:
@@ -194,17 +125,6 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
-    GetExternalVendorsResponse:
-      type: object
-      properties:
-        ExternalVendors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalVendor'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
     ThrottleLimit:
       type: object
       properties:
@@ -217,6 +137,86 @@ components:
         CurrentUsage:
           type: integer
           description: Current request count in the rolling window.
+    GetExternalVendorsRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    RegisterExternalVendorRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        VendorName:
+          type: string
+        VendorEmail:
+          type: string
+          format: email
+    GetCustomerIdFromKeyResponse:
+      type: object
+      properties:
+        CustomerId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetExternalVendorsResponse:
+      type: object
+      properties:
+        ExternalVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalVendor'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    RegisterExternalVendorResponse:
+      type: object
+      properties:
+        VendorId:
+          type: integer
+        CustomerKey:
+          type: string
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    GetCustomerIdFromKeyRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        CustomerKey:
+          type: string
+    GetThrottlesRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+    GetThrottlesResponse:
+      type: object
+      properties:
+        ThrottleLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThrottleLimit'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    ExternalVendor:
+      type: object
+      properties:
+        VendorId:
+          type: integer
+        VendorName:
+          type: string
+        CustomerKey:
+          type: string
+        IsActive:
+          type: boolean
 externalDocs:
   description: Kareo API and Integration Documentation
   url: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration

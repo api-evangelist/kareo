@@ -156,86 +156,6 @@ paths:
           description: Document not found
 components:
   schemas:
-    UpdateEncounterStatusResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdatePrimaryPatientCaseResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    CreateEncounterRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-    DeleteDocumentResponse:
-      type: object
-      properties:
-        Success:
-          type: boolean
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    CreateDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        EncounterId:
-          type: integer
-        DocumentName:
-          type: string
-        DocumentContent:
-          type: string
-          format: byte
-          description: Base64-encoded document content.
-        DocumentType:
-          type: string
-    UpdatePrimaryPatientCaseRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        PatientId:
-          type: integer
-        InsurancePolicyId:
-          type: integer
-        InsurancePolicyExternalId:
-          type: string
-    GetEncounterDetailsResponse:
-      type: object
-      properties:
-        Encounter:
-          $ref: '#/components/schemas/Encounter'
-        ErrorCode:
-          type: string
-        ErrorMessage:
-          type: string
-    UpdateEncounterStatusRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        EncounterId:
-          type: integer
-        EncounterStatus:
-          type: string
     RequestHeader:
       type: object
       required:
@@ -255,6 +175,42 @@ components:
           type: string
           format: password
           description: Kareo password for authentication.
+    UpdateEncounterStatusRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        EncounterId:
+          type: integer
+        EncounterStatus:
+          type: string
+    CreateDocumentResponse:
+      type: object
+      properties:
+        DocumentId:
+          type: integer
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    DeleteDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        DocumentId:
+          type: integer
+    UpdatePrimaryPatientCaseRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
+          type: integer
+        InsurancePolicyId:
+          type: integer
+        InsurancePolicyExternalId:
+          type: string
     Encounter:
       type: object
       properties:
@@ -293,13 +249,6 @@ components:
           description: CPT procedure codes billed in the encounter.
           example:
           - '99213'
-    DeleteDocumentRequest:
-      type: object
-      properties:
-        RequestHeader:
-          $ref: '#/components/schemas/RequestHeader'
-        DocumentId:
-          type: integer
     GetEncounterDetailsRequest:
       type: object
       properties:
@@ -307,6 +256,15 @@ components:
           $ref: '#/components/schemas/RequestHeader'
         EncounterId:
           type: integer
+    UpdateEncounterStatusResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
     CreateEncounterResponse:
       type: object
       properties:
@@ -316,11 +274,53 @@ components:
           type: string
         ErrorMessage:
           type: string
-    CreateDocumentResponse:
+    DeleteDocumentResponse:
       type: object
       properties:
-        DocumentId:
+        Success:
+          type: boolean
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    CreateEncounterRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+    CreateDocumentRequest:
+      type: object
+      properties:
+        RequestHeader:
+          $ref: '#/components/schemas/RequestHeader'
+        PatientId:
           type: integer
+        EncounterId:
+          type: integer
+        DocumentName:
+          type: string
+        DocumentContent:
+          type: string
+          format: byte
+          description: Base64-encoded document content.
+        DocumentType:
+          type: string
+    GetEncounterDetailsResponse:
+      type: object
+      properties:
+        Encounter:
+          $ref: '#/components/schemas/Encounter'
+        ErrorCode:
+          type: string
+        ErrorMessage:
+          type: string
+    UpdatePrimaryPatientCaseResponse:
+      type: object
+      properties:
+        Success:
+          type: boolean
         ErrorCode:
           type: string
         ErrorMessage:
