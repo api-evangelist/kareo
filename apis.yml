@@ -42,6 +42,16 @@ type: Index
 tags:
   - Healthcare
   - Medical Software
+  - Electronic Health Records
+  - Practice Management
+  - Medical Billing
+  - Patient Scheduling
+  - Clinical Data
+  - Insurance Eligibility
+  - HIPAA
+tags_raw:
+  - Healthcare
+  - Medical Software
   - EHR
   - Practice Management
   - Medical Billing
@@ -84,6 +94,13 @@ apis:
   humanURL: https://api.kareo.com/clinical/v1/swagger/
   baseURL: https://api.kareo.com/clinical/v1
   tags:
+  - REST
+  - Clinical
+  - Electronic Health Records
+  - MACRA
+  - MIPS
+  - OpenAPI
+  tags_raw:
   - REST
   - Clinical
   - EHR
