@@ -64,49 +64,164 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kareo, now part of Tebra, provides cloud medical software for independent practices. The platform offers APIs for integrating with clinical data, patient management, appointment scheduling, billing, collections, and insurance eligibility verification.
+Kareo, now part of Tebra, provides cloud medical software for independent practices. The platform offers SOAP-based web service APIs for integrating with clinical data, patient management, appointment scheduling, billing, collections, and insurance eligibility verification. The Kareo Integration API enables developers to build programs that access practice management data and functionality through authenticated XML-based SOAP requests. The platform also exposes a Clinical Open API for EHR data access.
 
-## APIs
+**Areas:** Healthcare · Medical Software · Electronic Health Records · Practice Management · Medical Billing · Patient Scheduling · Clinical Data · Insurance Eligibility · HIPAA
 
-### Kareo Integration SOAP API
+## Kareo on APIs.io
 
-The primary integration API is a SOAP-based web service available at `https://webservice.kareo.com/services/soap/2.1/KareoServices.svc`. It supports:
+Everything profiled for Kareo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kareo/](https://apis.io/providers/kareo/)** — or go straight to one of the APIs or properties below.
 
-- Read access: patients, providers, appointments, transactions, charges, procedure codes, service locations, encounters, payments, and practices
-- Write access: patients, appointments, encounters, and payments
-- Authentication via username, password, and Customer Key
+### APIs (8)
 
-WSDL: `https://webservice.kareo.com/services/soap/2.1/KareoServices.svc?wsdl`
+- [Kareo Integration SOAP API](https://apis.io/apis/kareo/kareo-soap-api/) — The Kareo Integration SOAP API provides a web services interface for integrating third-party applications with practice management data. Supports read…
+- [Kareo Clinical Open API](https://apis.io/apis/kareo/kareo-clinical-open-api/) — The Kareo Clinical Open API provides REST-based access to EHR clinical data, exposing patient clinical records, MACRA/MIPS reporting data, and related…
+- [Kareo Administrative API](https://apis.io/apis/kareo/kareo-administrative-api/) — Vendor registration, throttles, and configuration
+- [Kareo Appointments API](https://apis.io/apis/kareo/kareo-appointments-api/) — Appointment scheduling and management
+- [Kareo Billing API](https://apis.io/apis/kareo/kareo-billing-api/) — Charges, payments, and transactions
+- [Kareo Encounters API](https://apis.io/apis/kareo/kareo-encounters-api/) — Clinical encounter and document management
+- [Kareo Patients API](https://apis.io/apis/kareo/kareo-patients-api/) — Patient demographic and record management
+- [Kareo Providers API](https://apis.io/apis/kareo/kareo-providers-api/) — Provider and practice administration
 
-### Kareo Clinical Open API
+### Published properties
 
-A REST-based API for EHR clinical data access, documented with Swagger UI at `https://api.kareo.com/clinical/v1/swagger/`. Supports MACRA/MIPS reporting and clinical record access.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Authentication
+#### Agentic access (1)
 
-All API calls require:
-1. Username and password credentials
-2. A Customer Key issued by a System Administrator
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Customer Key must be generated and configured by the practice's System Administrator with appropriate security permissions.
+- [Kareo Agentic Access](https://apis.io/agentic-access/kareo/kareo-agentic-access/)
 
-## Documentation
+#### JSON Schema (3)
 
-- API Integration Guide: https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration
-- Clinical Open API (Swagger): https://api.kareo.com/clinical/v1/swagger/
-- API Terms of Use: https://www.tebra.com/api-terms-of-use/
+The data models the API reads and writes.
 
-## Pricing
+- [KareoAppointment](https://apis.io/schemas/kareo/kareo-appointment/)
+- [KareoEncounter](https://apis.io/schemas/kareo/kareo-encounter/)
+- [KareoPatient](https://apis.io/schemas/kareo/kareo-patient/)
 
-API access is bundled with the Tebra platform subscription. No standalone API pricing is available. Platform pricing is quote-based, per clinical provider per month. Contact Tebra at (866) 938-3272 or visit https://www.tebra.com/demo.
+#### JSON-LD (1)
 
-## Status
+Linked-data contexts for the provider's vocabulary.
 
-Platform status: https://status.tebra.com
+- [Kareo Context](https://apis.io/jsonld/kareo/kareo-context/)
 
-## Links
+#### Vocabulary (1)
 
-- Website: https://www.kareo.com
-- Blog: https://www.tebra.com/theintake
-- LinkedIn: https://www.linkedin.com/company/kareo
-- GitHub: https://github.com/kareo
+The provider's domain terms, defined.
+
+- [Kareo Vocabulary](https://apis.io/vocabularies/kareo/kareo-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Kareo Create Appointment Example](https://apis.io/examples/kareo/kareo-create-appointment-example/)
+- [Kareo Create Patient Example](https://apis.io/examples/kareo/kareo-create-patient-example/)
+- [Kareo Get Patients Example](https://apis.io/examples/kareo/kareo-get-patients-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Kareo Integration SOAP Administrative API](https://apis.io/collections/kareo/open-kareo-administrative-api/)
+- [Kareo Integration SOAP Administrative Appointments API](https://apis.io/collections/kareo/open-kareo-appointments-api/)
+- [Kareo Integration SOAP Administrative Billing API](https://apis.io/collections/kareo/open-kareo-billing-api/)
+- [Kareo Integration SOAP Administrative Encounters API](https://apis.io/collections/kareo/open-kareo-encounters-api/)
+- [Kareo Integration SOAP Administrative Patients API](https://apis.io/collections/kareo/open-kareo-patients-api/)
+- [Kareo Integration SOAP Administrative Providers API](https://apis.io/collections/kareo/open-kareo-providers-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Kareo — jsonschema rules](https://apis.io/rules/kareo/kareo-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kareo Domain Security](https://apis.io/security/kareo/kareo-domain-security/)
+- [Kareo Trust Center](https://apis.io/security/kareo/kareo-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Kareo Plans Pricing](https://apis.io/plans/kareo/kareo-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Kareo Rate Limits](https://apis.io/rate-limits/kareo/kareo-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Kareo Finops](https://apis.io/finops/kareo/kareo-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.kareo.com)
+- [Documentation](https://helpme.tebra.com/01_Kareo_PM/12_API_and_Integration)
+- [Pricing](https://www.tebra.com/pricing)
+- [Blog](https://www.tebra.com/theintake)
+- [Status](https://status.tebra.com)
+
+## API Evangelist rating
+
+**Kin Score 37.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 55.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 36.8 |
+
+**Agent readiness 15.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.6** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kareo/](https://apis.io/providers/kareo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kareo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kareo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
